@@ -245,7 +245,6 @@ GameObject:
   m_Component:
   - component: {fileID: 490856839}
   - component: {fileID: 490856838}
-  - component: {fileID: 490856837}
   m_Layer: 0
   m_Name: BackGroundTerrain
   m_TagString: Untagged
@@ -253,17 +252,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
---- !u!154 &490856837
-TerrainCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 490856836}
-  m_Material: {fileID: 13400000, guid: 3aeb7dadc0c69d54d9e5777e9d5631f1, type: 2}
-  m_Enabled: 1
-  m_TerrainData: {fileID: 15600000, guid: 7c01a44fa61ddd8498f91b8fcf123b6c, type: 2}
-  m_EnableTreeColliders: 1
 --- !u!218 &490856838
 Terrain:
   m_ObjectHideFlags: 0
@@ -437,7 +425,6 @@ GameObject:
   m_Component:
   - component: {fileID: 727345719}
   - component: {fileID: 727345721}
-  - component: {fileID: 727345720}
   m_Layer: 0
   m_Name: BackGroundTerrain (1)
   m_TagString: Untagged
@@ -460,17 +447,6 @@ Transform:
   m_Father: {fileID: 850167867}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!154 &727345720
-TerrainCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 727345718}
-  m_Material: {fileID: 13400000, guid: 3aeb7dadc0c69d54d9e5777e9d5631f1, type: 2}
-  m_Enabled: 1
-  m_TerrainData: {fileID: 15600000, guid: 7c01a44fa61ddd8498f91b8fcf123b6c, type: 2}
-  m_EnableTreeColliders: 1
 --- !u!218 &727345721
 Terrain:
   m_ObjectHideFlags: 0
@@ -534,6 +510,8 @@ Transform:
   m_Children:
   - {fileID: 490856839}
   - {fileID: 727345719}
+  - {fileID: 1151098239}
+  - {fileID: 1120228876}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -549,6 +527,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e811daaf0fbc4d4f9e8971fd55a7b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoveSpeed: -12
+  BackGround:
+  - {fileID: 490856836}
+  - {fileID: 727345718}
+  - {fileID: 1151098238}
+  - {fileID: 1120228875}
 --- !u!1 &875692411
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,6 +883,66 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 3
+--- !u!1 &1120228875
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1120228876}
+  m_Layer: 0
+  m_Name: StartPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1120228876
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120228875}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -86.54417, y: -23.26037, z: 410.43}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 850167867}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1151098238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1151098239}
+  m_Layer: 0
+  m_Name: EndPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1151098239
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151098238}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -86.54417, y: -23.26037, z: 309.2612}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 850167867}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1485580023
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,6 +1209,7 @@ GameObject:
   - component: {fileID: 2114776257}
   - component: {fileID: 2114776256}
   - component: {fileID: 2114776255}
+  - component: {fileID: 2114776258}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1231,9 +1276,18 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2114776254}
   m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 27.05, z: -10}
+  m_LocalPosition: {x: 0, y: 25.94, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
+--- !u!45 &2114776258
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114776254}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 0}
