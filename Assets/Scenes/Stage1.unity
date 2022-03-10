@@ -184,8 +184,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5249864, y: 2.145321, z: 0.07682295}
-  m_Center: {x: 0.06464924, y: 1.5162457, z: -0.4615891}
+  m_Size: {x: 1.5249873, y: 2.145321, z: 0.44541046}
+  m_Center: {x: 0.06464927, y: 1.5162457, z: -0.27729565}
 --- !u!23 &206289901
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -527,7 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e811daaf0fbc4d4f9e8971fd55a7b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: -12
+  MoveSpeed: -15
   BackGround:
   - {fileID: 490856836}
   - {fileID: 727345718}
@@ -706,8 +706,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1063042, y: 2.145321, z: 0.10891538}
-  m_Center: {x: 0.030040154, y: 1.5162457, z: -0.1800243}
+  m_Size: {x: 1.1063042, y: 2.145321, z: 0.6517046}
+  m_Center: {x: 0.030040171, y: 1.5162457, z: -0.45141917}
 --- !u!23 &897152121
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -773,7 +773,7 @@ GameObject:
   - component: {fileID: 1035815448}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -848,7 +848,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035815447}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10.15, z: -8.6}
+  m_LocalPosition: {x: 0, y: 10, z: -8.6}
   m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
   m_Children: []
   m_Father: {fileID: 0}
@@ -883,6 +883,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 3
+  MaxFireTime: 0.5
+  FireTime: 0
+  Bullet: {fileID: 5990019877420256218, guid: 0ec3ed304fda7564db7ec3a33363abb5, type: 3}
 --- !u!1 &1120228875
 GameObject:
   m_ObjectHideFlags: 0
