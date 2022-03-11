@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Fire();
+        CircleShot();
     }
     void FixedUpdate()
     {
@@ -24,11 +25,9 @@ public class Player : MonoBehaviour
     }
     void Move()
     {
-        float Horizontal = Speed * Time.deltaTime * Input.GetAxis("Horizontal");
-        float Vertical = Speed * Time.deltaTime * Input.GetAxis("Vertical");
-        transform.Translate(Horizontal, 0, Vertical);
-        rigid.velocity = Vector3.zero;
-        rigid.angularVelocity = Vector3.zero;
+        float Horizontal = Speed * Input.GetAxis("Horizontal");
+        float Vertical = Speed *  Input.GetAxis("Vertical");
+        rigid.velocity = new Vector3(Horizontal, 0, Vertical);
     }
     void Fire()
     {
@@ -44,6 +43,19 @@ public class Player : MonoBehaviour
         else if (FireTime < 0)
         {
             FireTime = 0;
+        }
+    }
+    void CircleShot()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            for (int i = 0; i < 360; i += 13)
+            {
+                GameObject temp = Instantiate(Bullet);
+                Destroy(temp, 2f);
+                temp.transform.position = Vector3.zero;
+                temp.transform.rotation = Quaternion.Euler(0, 0, i);
+            }
         }
     }
 }
