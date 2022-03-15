@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Fire();
-        CircleShot();
+        StartCoroutine(PattonTest());
     }
     void FixedUpdate()
     {
@@ -45,17 +45,33 @@ public class Player : MonoBehaviour
             FireTime = 0;
         }
     }
-    void CircleShot()
+    IEnumerator PattonTest()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            for (int i = 0; i < 360; i += 13)
-            {
-                GameObject temp = Instantiate(Bullet);
-                Destroy(temp, 2f);
-                temp.transform.position = Vector3.zero;
-                temp.transform.rotation = Quaternion.Euler(0, 0, i);
+            for (int z = 0; z < 360; z += 20){ //발사 횟수
+                for (int i = 0; i < 360; i += 90) //회전값
+                {
+                    GameObject temp = Instantiate(Bullet, transform.position, Quaternion.Euler(0, 0, 0));
+                    Destroy(temp, 2f);
+                    temp.transform.rotation = Quaternion.Euler(90, 0, i + z);
+                }
+                yield return new WaitForSeconds(0.2f);
             }
+
+            //for (int i = 0; i < 360; i += 13) //8방향 발사 (i는 회전값)
+            //{
+            //    GameObject temp = Instantiate(Bullet, transform.position, Quaternion.Euler(0, 0, 0));
+            //    Destroy(temp, 2f);
+            //    temp.transform.rotation = Quaternion.Euler(90, 0, i);
+            //}
+            //for (int i = 0; i < 360; i += 90) //십자가 발사
+            //{
+            //    GameObject temp = Instantiate(Bullet, transform.position, Quaternion.Euler(0, 0, 0));
+            //    Destroy(temp, 2f);
+            //    temp.transform.rotation = Quaternion.Euler(90, 0, i);
+            //}
         }
+        yield return null;
     }
 }

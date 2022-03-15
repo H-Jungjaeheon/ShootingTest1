@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float Hp, MaxHp, Damage, Speed, MoveCount, MaxMoveCount;
+    public float Hp, MaxHp, Damage, Speed, MoveCount, MaxMoveCount, FireCount, MaxFireCount;
     [SerializeField] bool IsMove;
     [SerializeField] int LOR;
+    public Material[] material;
     Rigidbody rigid;
 
     // Start is called before the first frame update
@@ -17,12 +18,17 @@ public class Enemy : MonoBehaviour
         IsMove = true;
         rigid = GetComponent<Rigidbody>();
     }
-
     // Update is called once per frame
     public virtual void FixedUpdate()
     {
         Move();
         Dead();
+        GetComponent<Renderer>().material = material[0];
+        FireCount += Time.deltaTime;
+        if(FireCount >= MaxFireCount)
+        {
+            Fire();
+        }
     }
     public virtual void Move()
     {
@@ -84,12 +90,23 @@ public class Enemy : MonoBehaviour
         else if (other.gameObject.CompareTag("Bullet") && GameManager.Instance.Hp > 0)
         {
             Hp -= GameManager.Instance.Damage;
-            //피격 이벤트 발동
+            StartCoroutine(EnemyHit());
         }
         else if (other.gameObject.CompareTag("Player"))
         {
             GameManager.Instance.Hp -= Damage;
             Destroy(this.gameObject);
         }
+    }
+    void Fire()
+    {
+
+    }
+    IEnumerator EnemyHit()
+    {
+        GetComponent<Renderer>().material = material[1];
+        yield return new WaitForSeconds(0.5f);
+        GetComponent<Renderer>().material = material[0];
+        yield return null;
     }
 }
