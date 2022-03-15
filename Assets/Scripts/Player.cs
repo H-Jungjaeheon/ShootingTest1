@@ -49,14 +49,13 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            for (int z = 0; z < 360; z += 20){ //발사 횟수
+            for (int z = 0; z < 500; z += 20){ //발사 횟수
                 for (int i = 0; i < 360; i += 90) //회전값
                 {
-                    GameObject temp = Instantiate(Bullet, transform.position, Quaternion.Euler(0, 0, 0));
+                    GameObject temp = Instantiate(Bullet, transform.position, Quaternion.Euler(90, 0, i + z));
                     Destroy(temp, 2f);
-                    temp.transform.rotation = Quaternion.Euler(90, 0, i + z);
                 }
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.1f);
             }
 
             //for (int i = 0; i < 360; i += 13) //8방향 발사 (i는 회전값)
@@ -70,6 +69,15 @@ public class Player : MonoBehaviour
             //    GameObject temp = Instantiate(Bullet, transform.position, Quaternion.Euler(0, 0, 0));
             //    Destroy(temp, 2f);
             //    temp.transform.rotation = Quaternion.Euler(90, 0, i);
+            //}
+            //for (int z = 0; z < 360; z += 20) //십자가 회전 발사
+            //{ //발사 횟수
+            //    for (int i = 0; i < 360; i += 90) //회전값
+            //    {
+            //        GameObject temp = Instantiate(Bullet, transform.position, Quaternion.Euler(90, 0, i + z));
+            //        Destroy(temp, 2f);
+            //    }
+            //    yield return new WaitForSeconds(0.2f);
             //}
         }
         yield return null;
