@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         rigid = GetComponent<Rigidbody>();
     }
 
@@ -33,7 +34,45 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.H) && FireTime == 0)
         {
-            Instantiate(Bullet, transform.position + new Vector3(0,0,2), Quaternion.Euler(90, 0, 0));
+            switch (GameManager.Instance.Damage)
+            {
+                case 1:
+                    Instantiate(Bullet, transform.position + new Vector3(0, 0, 1), Quaternion.Euler(90, 0, 0));
+                    break;
+                case 2:
+                    for(float a = -0.5f; a <= 0.5; a += 1f)
+                    {
+                        Instantiate(Bullet, transform.position + new Vector3(a, 0, 1), Quaternion.Euler(90, 0, 0));
+                    }                   
+                    break;
+                case 3:
+                    for (float a = -0.6f; a < 0.7; a += 0.6f)
+                    {
+                        Instantiate(Bullet, transform.position + new Vector3(a, 0, 1), Quaternion.Euler(90, 0, 0));
+                    }
+                    break;
+                case 4:
+                    for (float a = -20f; a <= 40; a += 40f)
+                    {
+                        Instantiate(Bullet, transform.position + new Vector3(0f, 0, 1), Quaternion.Euler(90, 0, a));
+                    }
+                    for (float a = -0.6f; a < 0.7; a += 0.6f)
+                    {
+                        Instantiate(Bullet, transform.position + new Vector3(a, 0, 1), Quaternion.Euler(90, 0, 0));
+                    }
+                    break;
+                case 5:
+                    for (float a = -20f; a <= 40; a += 40f)
+                    {
+                        Instantiate(Bullet, transform.position + new Vector3(0f, 0, 1), Quaternion.Euler(90, 0, a));
+                    }
+                    for (float a = -0.6f; a < 0.7; a += 0.6f)
+                    {
+                        Instantiate(Bullet, transform.position + new Vector3(a, 0, 1), Quaternion.Euler(90, 0, 0));
+                    }
+                    MaxFireTime = 0.2f;
+                    break;
+            }
             FireTime += MaxFireTime;
         }
         if (FireTime > 0)
@@ -49,7 +88,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            for (int z = 0; z < 500; z += 20){ //발사 횟수
+            for (int z = 0; z < 500; z += 20){ //발사 횟수 및 발사마다 움직일 각도
                 for (int i = 0; i < 360; i += 90) //회전값
                 {
                     GameObject temp = Instantiate(Bullet, transform.position, Quaternion.Euler(90, 0, i + z));

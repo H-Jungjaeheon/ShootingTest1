@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; set; }
-    public float MaxHp, Hp, Damage, MaxBoom, Boom, Score, Stage;
+    public float MaxHp, Hp, Damage, MaxBoom, Boom, Score, Stage, Pain, MaxPain;
     // Start is called before the first frame update
     void Start()
     {

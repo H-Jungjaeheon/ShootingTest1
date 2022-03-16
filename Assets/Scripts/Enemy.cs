@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float Hp, MaxHp, Damage, Speed, MoveCount, MaxMoveCount, FireCount, MaxFireCount;
+    public float Hp, MaxHp, Damage, Speed, MoveCount, MaxMoveCount;
     [SerializeField] bool IsMove;
     [SerializeField] int LOR;
     public Material[] material;
@@ -24,11 +24,6 @@ public class Enemy : MonoBehaviour
         Move();
         Dead();
         GetComponent<Renderer>().material = material[0];
-        FireCount += Time.deltaTime;
-        if(FireCount >= MaxFireCount)
-        {
-            Fire();
-        }
     }
     public virtual void Move()
     {
@@ -48,14 +43,14 @@ public class Enemy : MonoBehaviour
             StartCoroutine(ChangeX());
         }
     }
-    IEnumerator ChangeX()
+    public virtual IEnumerator ChangeX()
     {
         LOR = Random.Range(0, 2);
         yield return new WaitForSeconds(1);
         IsMove = true;
         yield return null;
     }
-    void Turn()
+    public virtual void Turn()
     {
         if (LOR == 1)
         {        
@@ -98,11 +93,8 @@ public class Enemy : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    void Fire()
-    {
-
-    }
-    IEnumerator EnemyHit()
+    
+    public virtual IEnumerator EnemyHit()
     {
         GetComponent<Renderer>().material = material[1];
         yield return new WaitForSeconds(0.5f);

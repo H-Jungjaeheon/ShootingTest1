@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
         if(SpawnCount >= MaxSpawnCount)
         {
             SpawnCount = 0;
-            int a = Random.Range(0, 1);
+            int a = Random.Range(0, 3);
             int b = Random.Range(0, 5);
             Instantiate(Enemy[a], Spawner[b].transform.position, transform.rotation);
         }
