@@ -126,12 +126,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 588b80962d510354491a5e89ccceec5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 5
-  MaxHp: 5
+  Hp: 4
+  MaxHp: 4
   Damage: 3
-  Speed: 12
+  Speed: 11
   MoveCount: 0
-  MaxMoveCount: 3
+  MaxMoveCount: 0.6
   IsMove: 0
   LOR: 0
   material:

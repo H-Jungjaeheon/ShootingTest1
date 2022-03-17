@@ -35,7 +35,7 @@ public class SplitEnemy : Enemy
         {
             if (IsSpawnMini == true)
             {
-                for (float a = -0.9f; a < 0.9f; a += 1.8f)
+                for (float a = -0.9f; a < 1f; a += 1.8f)
                 {
                     Instantiate(MiniObj, transform.position + new Vector3(a, 0, 0), Quaternion.Euler(0, 0, 0));
                 }
