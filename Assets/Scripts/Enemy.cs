@@ -5,8 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float Hp, MaxHp, Damage, Speed, MoveCount, MaxMoveCount;
-    [SerializeField] bool IsMove;
-    [SerializeField] int LOR;
+    [SerializeField] private bool IsMove;
+    [SerializeField] private int LOR;
     public Material[] material;
     Rigidbody rigid;
 

@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class FarawayEnemy : Enemy
 {
-    [SerializeField] float ShootCount, MaxShootCount;
-    [SerializeField] GameObject Bullet;
-    // Start is called before the first frame update
-    public override void Start()
-    {
-        base.Start();
-    }
-
-    // Update is called once per frame
+    [SerializeField] private float ShootCount, MaxShootCount;
+    [SerializeField] private GameObject Bullet;
+ 
     public override void FixedUpdate()
     {
         base.FixedUpdate();

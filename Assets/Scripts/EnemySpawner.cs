@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] GameObject[] Enemy, Spawner;
-    [SerializeField] float SpawnCount, MaxSpawnCount;
+    [SerializeField] private GameObject[] Enemy, Spawner;
+    [SerializeField] private float SpawnCount, MaxSpawnCount;
     // Start is called before the first frame update
     void Start()
     {
