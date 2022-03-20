@@ -5,16 +5,16 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float Hp, MaxHp, Damage, Speed, MoveCount, MaxMoveCount;
-    [SerializeField] private bool IsMove;
+    public bool IsMove;
     [SerializeField] private int LOR;
     public Material[] material;
-    Rigidbody rigid;
+    public Rigidbody rigid;
 
     // Start is called before the first frame update
     public virtual void Start()
     {
-        Hp *= GameManager.Instance.Stage;
-        MaxHp *= GameManager.Instance.Stage;
+        Hp *= GameManager.Instance.Stage + GameManager.Instance.Damage;
+        MaxHp *= GameManager.Instance.Stage + GameManager.Instance.Damage;
         IsMove = true;
         rigid = GetComponent<Rigidbody>();
     }

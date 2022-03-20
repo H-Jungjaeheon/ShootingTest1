@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class SplitEnemy : Enemy
 {
-    [SerializeField] GameObject MiniObj;
-    [SerializeField] bool IsSpawnMini;
+    [SerializeField] private GameObject MiniObj;
+    [SerializeField] private bool IsSpawnMini;
+    [SerializeField] private int MonsterCount;
     // Start is called before the first frame update
     public override void Start()
     {
@@ -35,9 +36,19 @@ public class SplitEnemy : Enemy
         {
             if (IsSpawnMini == true)
             {
-                for (float a = -0.9f; a < 1f; a += 1.8f)
+                if (MonsterCount == 2)
                 {
-                    Instantiate(MiniObj, transform.position + new Vector3(a, 0, 0), Quaternion.Euler(0, 0, 0));
+                    for (float a = -1.2f; a < 1.3f; a += 2.4f)
+                    {
+                        Instantiate(MiniObj, transform.position + new Vector3(a, 0, 0), Quaternion.Euler(0, 0, 0));
+                    }
+                }
+                else
+                {
+                    for (float a = -0.9f; a < 1f; a += 1.8f)
+                    {
+                        Instantiate(MiniObj, transform.position + new Vector3(a, 0, 0), Quaternion.Euler(0, 0, 0));
+                    }
                 }
             }
             Destroy(this.gameObject);

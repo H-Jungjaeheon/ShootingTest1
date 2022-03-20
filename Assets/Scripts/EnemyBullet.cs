@@ -18,9 +18,13 @@ public class EnemyBullet : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("ObjDestroy"))
+        if (other.gameObject.CompareTag("Player"))
         {
             GameManager.Instance.Hp -= Damage;
+            Destroy(this.gameObject);
+        }
+        else if (other.gameObject.CompareTag("ObjDestroy"))
+        {
             Destroy(this.gameObject);
         }
     }
