@@ -16,6 +16,13 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Health();
+    }
+    void Health()
+    {
+        if (Hp >= MaxHp)
+        {
+            Hp = MaxHp;
+        }
     }
 }

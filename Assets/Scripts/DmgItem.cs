@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class DmgItem : MonoBehaviour
 {
-    [SerializeField] private float Speed;
+    [SerializeField] private float Speed, Rotation, RSpeed;
 
-
-    // Start is called before the first frame update
-    void Start()
+    public virtual void Update()
     {
-        
+        Move();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        transform.position += new Vector3(0, 0, -Speed * Time.deltaTime);
-    }
-    private void OnTriggerEnter(Collider other)
+    public virtual void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            GameManager.Instance.Damage += 1;
+            if (GameManager.Instance.Damage >= 5)
+            {
+                GameManager.Instance.Score += 1000;
+                GameManager.Instance.Damage = 5;
+            }
+            else
+            {
+                GameManager.Instance.Damage += 1;
+            }
             //파티클 효과
             Destroy(this.gameObject);
         }
@@ -33,6 +33,16 @@ public class DmgItem : MonoBehaviour
         else if (other.gameObject.CompareTag("ObjDestroy"))
         {
             Destroy(this.gameObject);
+        }
+    }
+    public virtual void Move()
+    {
+        Rotation += Time.deltaTime * RSpeed;
+        transform.position += new Vector3(0, 0, -Speed * Time.deltaTime);
+        transform.rotation = Quaternion.Euler(0, Rotation, Rotation);
+        if(Rotation >= 360)
+        {
+            Rotation = 0;
         }
     }
 }
