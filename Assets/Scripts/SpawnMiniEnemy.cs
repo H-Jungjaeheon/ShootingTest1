@@ -52,7 +52,7 @@ public class SpawnMiniEnemy : Enemy
                 Instantiate(Bullet, transform.position, Quaternion.Euler(90, 0, a));
             }
             Destroy(this.gameObject);
-            //점수 증가
+            GameManager.Instance.Score += Score;
         }   
     }
 }

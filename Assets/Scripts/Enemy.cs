@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour
         if(Hp <= 0)
         {
             Destroy(this.gameObject);
-            //점수 증가
+            GameManager.Instance.Score += Score;
         }
     }
     public virtual void OnTriggerEnter(Collider other)

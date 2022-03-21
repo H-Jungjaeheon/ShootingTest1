@@ -131,6 +131,7 @@ MonoBehaviour:
   Speed: 1
   MoveCount: 0
   MaxMoveCount: 0
+  Score: 100
   IsMove: 0
   LOR: 0
   material:

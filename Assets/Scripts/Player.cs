@@ -7,10 +7,13 @@ public class Player : MonoBehaviour
     [SerializeField] float Speed, MaxFireTime, FireTime;
     Rigidbody rigid;
     [SerializeField] GameObject Bullet;
+    [SerializeField] private Material[] materials;
+    [SerializeField] private MeshRenderer mesh;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        mesh = GetComponent<MeshRenderer>();
         rigid = GetComponent<Rigidbody>();
     }
 
@@ -86,9 +89,13 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") || other.CompareTag("EnemyBullet"))
+        if(GameManager.Instance.IsHit == false)
         {
-            StartCoroutine(PlayerHit());
+            if (other.CompareTag("Enemy") || other.CompareTag("EnemyBullet"))
+            {
+                StartCoroutine(PlayerHit());
+                Debug.Log("무적 발동");
+            }
         }
     }
     IEnumerator PattonTest()
@@ -130,7 +137,11 @@ public class Player : MonoBehaviour
     }
     IEnumerator PlayerHit()
     {
-
+        GameManager.Instance.IsHit = true;
+        mesh.material = materials[1];
+        yield return new WaitForSeconds(3);
+        mesh.material = materials[0];
+        GameManager.Instance.IsHit = false;
         yield return null;
     }
 }
