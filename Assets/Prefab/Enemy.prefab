@@ -3072,7 +3072,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 451c8c89b4499334084c4f0ec488b2ff, type: 2}
-  - {fileID: 2100000, guid: f53f71ce8862f364594932978eb223f2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3130,7 +3129,8 @@ MonoBehaviour:
   material:
   - {fileID: 2100000, guid: 451c8c89b4499334084c4f0ec488b2ff, type: 2}
   - {fileID: 2100000, guid: f53f71ce8862f364594932978eb223f2, type: 2}
-  rigid: {fileID: 0}
+  rigid: {fileID: 2417184066925708840}
+  mesh: {fileID: 0}
 --- !u!54 &2417184066925708840
 Rigidbody:
   m_ObjectHideFlags: 0

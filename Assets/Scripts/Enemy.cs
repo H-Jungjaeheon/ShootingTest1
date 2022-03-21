@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float Hp, MaxHp, Damage, Speed, MoveCount, MaxMoveCount;
+    public float Hp, MaxHp, Damage, Speed, MoveCount, MaxMoveCount, Score;
     public bool IsMove;
     [SerializeField] private int LOR;
     public Material[] material;
     public Rigidbody rigid;
+    public MeshRenderer mesh;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -17,13 +18,14 @@ public class Enemy : MonoBehaviour
         MaxHp *= GameManager.Instance.Stage + GameManager.Instance.Damage;
         IsMove = true;
         rigid = GetComponent<Rigidbody>();
+        mesh = GetComponent<MeshRenderer>();
     }
     // Update is called once per frame
     public virtual void FixedUpdate()
     {
         Move();
         Dead();
-        GetComponent<Renderer>().material = material[0];
+        mesh.material = material[0];
     }
     public virtual void Move()
     {
@@ -89,16 +91,19 @@ public class Enemy : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Player"))
         {
-            GameManager.Instance.Hp -= Damage;
+            if(GameManager.Instance.IsHit == false)
+            {
+                GameManager.Instance.Hp -= Damage;
+            }
             Destroy(this.gameObject);
         }
     }
     
     public virtual IEnumerator EnemyHit()
     {
-        GetComponent<Renderer>().material = material[1];
+        mesh.material = material[1];
         yield return new WaitForSeconds(0.5f);
-        GetComponent<Renderer>().material = material[0];
+        mesh.material = material[0];
         yield return null;
     }
 }

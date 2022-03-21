@@ -7,29 +7,7 @@ public class SplitEnemy : Enemy
     [SerializeField] private GameObject MiniObj;
     [SerializeField] private bool IsSpawnMini;
     [SerializeField] private int MonsterCount;
-    // Start is called before the first frame update
-    public override void Start()
-    {
-        base.Start();
-    }
 
-    // Update is called once per frame
-    public override void FixedUpdate()
-    {
-        base.FixedUpdate();
-    }
-    public override void Move()
-    {
-        base.Move();
-    }
-    public override IEnumerator ChangeX()
-    {
-        return base.ChangeX();
-    }
-    public override void Turn()
-    {
-        base.Turn();
-    }
     public override void Dead()
     {
         if (Hp <= 0)
@@ -55,12 +33,11 @@ public class SplitEnemy : Enemy
             //점수 증가
         }
     }
-    public override void OnTriggerEnter(Collider other)
-    {
-        base.OnTriggerEnter(other);
-    }
     public override IEnumerator EnemyHit()
     {
-        return base.EnemyHit();
+        mesh.material = material[1];
+        yield return new WaitForSeconds(0.5f);
+        mesh.material = material[0];
+        yield return null;
     }
 }

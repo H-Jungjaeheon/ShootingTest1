@@ -17,10 +17,6 @@ public class SpawnEnemy : Enemy
     {
         transform.position -= new Vector3(0, 0, Speed * Time.deltaTime);
     }
-    public override void OnTriggerEnter(Collider other)
-    {
-        base.OnTriggerEnter(other);
-    }
     public override void Dead()
     {
         if (Hp <= 0)

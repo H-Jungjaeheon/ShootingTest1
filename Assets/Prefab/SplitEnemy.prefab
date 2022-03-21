@@ -60,7 +60,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a3198cfbb50be4740a419578ecd38679, type: 2}
-  - {fileID: 2100000, guid: a3198cfbb50be4740a419578ecd38679, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -141,7 +140,6 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a3198cfbb50be4740a419578ecd38679, type: 2}
   - {fileID: 2100000, guid: a3198cfbb50be4740a419578ecd38679, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -224,7 +222,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a3198cfbb50be4740a419578ecd38679, type: 2}
-  - {fileID: 2100000, guid: a3198cfbb50be4740a419578ecd38679, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -255,11 +252,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4286947555839214926}
-  - component: {fileID: 8156449841751373302}
-  - component: {fileID: 2474588411693059192}
-  - component: {fileID: 4027326130702012317}
   - component: {fileID: 1498121226546423593}
   - component: {fileID: 8059711648644749279}
+  - component: {fileID: 7120928009152521651}
+  - component: {fileID: 6592152234061720}
+  - component: {fileID: 6049261574774880222}
   m_Layer: 0
   m_Name: SplitEnemy
   m_TagString: Enemy
@@ -284,63 +281,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &8156449841751373302
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3975413123214847422}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.7928152
-  m_Height: 4.5234585
-  m_Direction: 2
-  m_Center: {x: 0, y: 0.2928152, z: 1.2146349}
---- !u!54 &2474588411693059192
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3975413123214847422}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
---- !u!114 &4027326130702012317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3975413123214847422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 588b80962d510354491a5e89ccceec5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Hp: 15
-  MaxHp: 15
-  Damage: 6
-  Speed: 2.3
-  MoveCount: 0
-  MaxMoveCount: 3
-  IsMove: 0
-  LOR: 0
-  material:
-  - {fileID: 2100000, guid: a3198cfbb50be4740a419578ecd38679, type: 2}
-  - {fileID: 2100000, guid: a3198cfbb50be4740a419578ecd38679, type: 2}
-  rigid: {fileID: 2474588411693059192}
-  MiniObj: {fileID: 8363004068495837140, guid: cdc20bb68d9e6d241812b322abb68c59, type: 3}
-  IsSpawnMini: 1
-  MonsterCount: 1
 --- !u!95 &1498121226546423593
 Animator:
   serializedVersion: 3
@@ -380,7 +320,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a3198cfbb50be4740a419578ecd38679, type: 2}
-  - {fileID: 2100000, guid: a3198cfbb50be4740a419578ecd38679, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -402,3 +341,61 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &7120928009152521651
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3975413123214847422}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.9535447
+  m_Height: 4.575823
+  m_Direction: 2
+  m_Center: {x: -0.006928265, y: 0.29281515, z: 1.2405138}
+--- !u!54 &6592152234061720
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3975413123214847422}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!114 &6049261574774880222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3975413123214847422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 588b80962d510354491a5e89ccceec5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hp: 15
+  MaxHp: 15
+  Damage: 6
+  Speed: 2.3
+  MoveCount: 0
+  MaxMoveCount: 3
+  IsMove: 0
+  LOR: 0
+  material:
+  - {fileID: 2100000, guid: a3198cfbb50be4740a419578ecd38679, type: 2}
+  - {fileID: 2100000, guid: f53f71ce8862f364594932978eb223f2, type: 2}
+  rigid: {fileID: 6592152234061720}
+  mesh: {fileID: 8059711648644749279}
+  MiniObj: {fileID: 8363004068495837140, guid: cdc20bb68d9e6d241812b322abb68c59, type: 3}
+  IsSpawnMini: 1
+  MonsterCount: 1

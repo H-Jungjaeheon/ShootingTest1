@@ -31,7 +31,10 @@ public class TankerEnemy : Enemy
         }
         else if (other.gameObject.CompareTag("Player"))
         {
-            GameManager.Instance.Hp -= Damage;
+            if(GameManager.Instance.IsHit == false)
+            {
+                GameManager.Instance.Hp -= Damage;
+            }
             Destroy(this.gameObject);
         }
     }

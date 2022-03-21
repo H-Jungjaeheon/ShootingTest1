@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; set; }
     public float MaxHp, Hp, Damage, MaxBoom, Boom, Score, Stage, Pain, MaxPain;
+    public bool IsHit;
     // Start is called before the first frame update
     void Start()
     {

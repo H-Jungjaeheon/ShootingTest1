@@ -1112,6 +1112,7 @@ MonoBehaviour:
   Stage: 2
   Pain: 100
   MaxPain: 100
+  IsHit: 0
 --- !u!4 &834475648
 Transform:
   m_ObjectHideFlags: 0
@@ -1742,7 +1743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemy:
   - {fileID: 2417184066925708834, guid: 4c2b3c793da4d704bae7c2090914d12c, type: 3}
-  - {fileID: 4028555588956367875, guid: 5890c600111c4ea4baea2513789ba374, type: 3}
+  - {fileID: 7364239507805757683, guid: 5890c600111c4ea4baea2513789ba374, type: 3}
   - {fileID: 3975413123214847422, guid: 2e9825707950a054d9aa6793e5e4666b, type: 3}
   - {fileID: 4693399478351390135, guid: bc4ace8c64dc6b94eb11830d01d2eb79, type: 3}
   - {fileID: 193869319394644396, guid: 31886c35a4e504740b3fc12c74a0295c, type: 3}
@@ -1833,8 +1834,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1261089942}
-  m_LocalRotation: {x: -0.4848096, y: 0, z: 0, w: 0.8746197}
-  m_LocalPosition: {x: 0, y: -16.66, z: -10.5}
+  m_LocalRotation: {x: -0.28490844, y: 0.0012348897, z: 0.0004201094, w: 0.95855385}
+  m_LocalPosition: {x: 1.0315107, y: -13.274676, z: -10.644906}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

@@ -64,7 +64,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 68ffed5c80c94b74e96bbba36e06d509, type: 2}
-  - {fileID: 2100000, guid: 68ffed5c80c94b74e96bbba36e06d509, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -137,8 +136,9 @@ MonoBehaviour:
   LOR: 0
   material:
   - {fileID: 2100000, guid: 68ffed5c80c94b74e96bbba36e06d509, type: 2}
-  - {fileID: 2100000, guid: 68ffed5c80c94b74e96bbba36e06d509, type: 2}
-  rigid: {fileID: 0}
+  - {fileID: 2100000, guid: f53f71ce8862f364594932978eb223f2, type: 2}
+  rigid: {fileID: 193869319394644390}
+  mesh: {fileID: 193869319394644385}
   SelfDestructCount: 0
   MaxSelfDestructCount: 0
   Bullet: {fileID: 6849841529610070293, guid: 135f5069a676256458a1b3c9ac8b032e, type: 3}

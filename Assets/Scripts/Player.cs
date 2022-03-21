@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Fire();
-        StartCoroutine(PattonTest());
+        //StartCoroutine(PattonTest());
     }
     void FixedUpdate()
     {
@@ -84,6 +84,13 @@ public class Player : MonoBehaviour
             FireTime = 0;
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy") || other.CompareTag("EnemyBullet"))
+        {
+            StartCoroutine(PlayerHit());
+        }
+    }
     IEnumerator PattonTest()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -119,6 +126,11 @@ public class Player : MonoBehaviour
             //    yield return new WaitForSeconds(0.2f);
             //}
         }
+        yield return null;
+    }
+    IEnumerator PlayerHit()
+    {
+
         yield return null;
     }
 }
