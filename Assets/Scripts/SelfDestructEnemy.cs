@@ -12,11 +12,6 @@ public class SelfDestructEnemy : Enemy
         MaxSelfDestructCount = Random.Range(4, 6);
         IsMove = true;
     }
-    // Update is called once per frame
-    public override void FixedUpdate()
-    {
-        base.FixedUpdate();
-    }
     public override void Move()
     {
         if (IsMove == true)

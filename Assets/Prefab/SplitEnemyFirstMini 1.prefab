@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5782282059353591217}
   m_Layer: 0
   m_Name: SplitEnemy (3)
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7492998937419177760}
   m_Layer: 0
   m_Name: SplitEnemy(2)
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 8281588736102648669}
   m_Layer: 0
   m_Name: SplitEnemy(1)
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -20,7 +20,7 @@ public class EnemyBullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if(GameManager.Instance.IsHit == false)
+            if(GameManager.Instance.IsHit == false && GameManager.Instance.IsShild == false)
             {
                 GameManager.Instance.Hp -= Damage;
             }

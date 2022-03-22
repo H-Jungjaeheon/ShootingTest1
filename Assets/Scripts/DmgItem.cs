@@ -26,10 +26,6 @@ public class DmgItem : MonoBehaviour
             //파티클 효과
             Destroy(this.gameObject);
         }
-        else if (other.gameObject.CompareTag("Enemy"))
-        {
-
-        }
         else if (other.gameObject.CompareTag("ObjDestroy"))
         {
             Destroy(this.gameObject);

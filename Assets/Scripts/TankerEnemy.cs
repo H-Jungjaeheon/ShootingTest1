@@ -26,12 +26,15 @@ public class TankerEnemy : Enemy
                 Instantiate(ReflectBullet, transform.position, Quaternion.Euler(90, 0, a));
                 RandReflect = 0;
             }
-            Hp -= GameManager.Instance.Damage;
+            else
+            {
+                Hp -= GameManager.Instance.Damage;
+            }
             StartCoroutine(EnemyHit());
         }
         else if (other.gameObject.CompareTag("Player"))
         {
-            if(GameManager.Instance.IsHit == false)
+            if(GameManager.Instance.IsHit == false && GameManager.Instance.IsShild == false)
             {
                 GameManager.Instance.Hp -= Damage;
             }

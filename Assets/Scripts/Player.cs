@@ -4,34 +4,67 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] float Speed, MaxFireTime, FireTime;
+    public float Speed, MaxFireTime, FireTime;
     Rigidbody rigid;
-    [SerializeField] GameObject Bullet;
+    [SerializeField] GameObject Bullet, ShildObj;
+    [SerializeField] private GameObject[] BoomObj;
     [SerializeField] private Material[] materials;
     [SerializeField] private MeshRenderer mesh;
+    [SerializeField] private bool IsBoom;
 
     // Start is called before the first frame update
     void Start()
     {
-        mesh = GetComponent<MeshRenderer>();
-        rigid = GetComponent<Rigidbody>();
+        ShildObj.SetActive(false);
+       rigid = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Fire();
+        if (Input.GetKeyDown(KeyCode.K) && GameManager.Instance.Boom > 0 && IsBoom == false)
+        {
+            IsBoom = true;
+            Boom();
+        }
         //StartCoroutine(PattonTest());
     }
     void FixedUpdate()
     {
         Move();
+        Shild();
+        BoomObj = GameObject.FindGameObjectsWithTag("Enemy");
     }
     void Move()
     {
         float Horizontal = Speed * Input.GetAxis("Horizontal");
         float Vertical = Speed *  Input.GetAxis("Vertical");
         rigid.velocity = new Vector3(Horizontal, 0, Vertical);
+    }
+    void Boom()
+    {
+        for (int a = 0; a < BoomObj.Length; a++)
+        {
+            BoomObj[a].GetComponent<Enemy>().Hp -= 400;
+        }
+        IsBoom = false;
+        //GameManager.Instance.Boom -= 1;
+    }
+    void Shild()
+    {
+        if (Input.GetKeyDown(KeyCode.J) && GameManager.Instance.Shild > 0 && GameManager.Instance.IsShild == false)
+        {
+            GameManager.Instance.Shild -= 1;
+            GameManager.Instance.IsShild = true;
+            ShildObj.SetActive(true);
+            Invoke("ShildOff", 5f);
+        }
+    }
+    void ShildOff()
+    {
+        ShildObj.SetActive(false);
+        GameManager.Instance.IsShild = false;
     }
     void Fire()
     {
@@ -89,7 +122,7 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(GameManager.Instance.IsHit == false)
+        if(GameManager.Instance.IsHit == false && GameManager.Instance.IsShild == false)
         {
             if (other.CompareTag("Enemy") || other.CompareTag("EnemyBullet"))
             {

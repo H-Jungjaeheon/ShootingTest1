@@ -5,8 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; set; }
-    public float MaxHp, Hp, Damage, MaxBoom, Boom, Score, Stage, Pain, MaxPain;
-    public bool IsHit;
+    public float MaxHp, Hp, Damage, MaxBoom, Boom, Score, Stage, Pain, MaxPain, Shild, MaxShild;
+    public bool IsHit, IsShild;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
         if (Hp >= MaxHp)
         {
             Hp = MaxHp;
+        }
+        if(Pain <= 0)
+        {
+            Pain = 0;
         }
     }
 }
