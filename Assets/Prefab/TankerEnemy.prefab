@@ -128,12 +128,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hp: 40
   MaxHp: 40
-  Damage: 3
+  Damage: 7
   Speed: 0.9
   MoveCount: 0
   MaxMoveCount: 0
   Score: 1000
   IsMove: 0
+  IsGo: 0
   LOR: 0
   material:
   - {fileID: 2100000, guid: bd973269cfee86f479a7d88e2e946ed0, type: 2}

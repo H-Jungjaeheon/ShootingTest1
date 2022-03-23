@@ -26,7 +26,7 @@ public class EnemyBullet : MonoBehaviour
             }
             Destroy(this.gameObject);
         }
-        else if (other.gameObject.CompareTag("ObjDestroy"))
+        else if (other.gameObject.CompareTag("ObjDestroy") || other.gameObject.CompareTag("RedCell"))
         {
             Destroy(this.gameObject);
         }

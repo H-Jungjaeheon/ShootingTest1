@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float Hp, MaxHp, Damage, Speed, MoveCount, MaxMoveCount, Score;
-    public bool IsMove;
+    public bool IsMove, IsGo;
     [SerializeField] private int LOR;
     public Material[] material;
     public Rigidbody rigid;
@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
+        IsGo = true;
         Hp *= GameManager.Instance.Stage + GameManager.Instance.Damage;
         MaxHp *= GameManager.Instance.Stage + GameManager.Instance.Damage;
         IsMove = true;
@@ -82,7 +83,7 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.CompareTag("ObjDestroy"))
         {
             Destroy(this.gameObject);
-            //고통지수 증가
+            GameManager.Instance.Pain += Damage;
         }
         else if (other.gameObject.CompareTag("Bullet") && GameManager.Instance.Hp > 0)
         {

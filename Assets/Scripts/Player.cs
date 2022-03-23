@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Fire();
-        if (Input.GetKeyDown(KeyCode.K) && GameManager.Instance.Boom > 0 && IsBoom == false)
+        if (Input.GetKeyDown(KeyCode.J) && GameManager.Instance.Boom > 0 && IsBoom == false)
         {
             IsBoom = true;
             Boom();
@@ -46,25 +46,45 @@ public class Player : MonoBehaviour
     {
         for (int a = 0; a < BoomObj.Length; a++)
         {
-            BoomObj[a].GetComponent<Enemy>().Hp -= 400;
+            if(BoomObj[a].GetComponent<Enemy>().IsGo == true)
+            {
+                BoomObj[a].GetComponent<Enemy>().Hp -= GameManager.Instance.Damage * 10;
+            }
         }
         IsBoom = false;
-        //GameManager.Instance.Boom -= 1;
+        GameManager.Instance.Boom -= 1;
     }
     void Shild()
     {
-        if (Input.GetKeyDown(KeyCode.J) && GameManager.Instance.Shild > 0 && GameManager.Instance.IsShild == false)
+        if (GameManager.Instance.ShildTime > 0)
         {
-            GameManager.Instance.Shild -= 1;
-            GameManager.Instance.IsShild = true;
             ShildObj.SetActive(true);
-            Invoke("ShildOff", 5f);
+            GameManager.Instance.IsShild = true;
+        }
+        else if(GameManager.Instance.ShildTime <= 0)
+        {
+            ShildObj.SetActive(false);
+            GameManager.Instance.IsShild = false;
+            GameManager.Instance.ShildTime = 0;
+        }
+        if(GameManager.Instance.ShildTime > 0.5)
+        {
+            //파티클 실행
+            Debug.Log("실드 파티클 활성화");
+        }
+        else
+        {
+            //파티클 종료
+            Debug.Log("실드 파티클 비활성화");
         }
     }
-    void ShildOff()
+    IEnumerator ShildOff(float ShildTime)
     {
+        yield return new WaitForSeconds(ShildTime - 0.5f);
         ShildObj.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
         GameManager.Instance.IsShild = false;
+        yield return null;
     }
     void Fire()
     {

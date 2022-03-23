@@ -15,7 +15,7 @@ public class TankerEnemy : Enemy
         if (other.gameObject.CompareTag("ObjDestroy"))
         {
             Destroy(this.gameObject);
-            //고통지수 증가
+            GameManager.Instance.Pain += Damage;
         }
         else if (other.gameObject.CompareTag("Bullet") && GameManager.Instance.Hp > 0)
         {

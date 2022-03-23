@@ -8,14 +8,7 @@ public class ShildItem : DmgItem
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (GameManager.Instance.Shild >= GameManager.Instance.MaxShild)
-            {
-                GameManager.Instance.Score += 1400;
-            }
-            else
-            {
-                GameManager.Instance.Shild += 1;
-            }
+            GameManager.Instance.ShildTime = 3;
             //파티클 효과
             Destroy(this.gameObject);
         }

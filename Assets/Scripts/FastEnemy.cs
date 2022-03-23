@@ -9,6 +9,7 @@ public class FastEnemy : Enemy
 
     public override void Start()
     {
+        IsGo = false;
         Hp *= GameManager.Instance.Stage + GameManager.Instance.Damage;
         MaxHp *= GameManager.Instance.Stage + GameManager.Instance.Damage;
         IsMove = false;
@@ -17,22 +18,39 @@ public class FastEnemy : Enemy
     }
     void StartMove()
     {
-        IsMove = true;
+        IsGo = true;
         Warining.SetActive(false);
     }
 
     public override void Move()
     {
-        if (IsMove == true)
+        if (IsGo == true)
         { 
             transform.position -= new Vector3(0, 0, Speed * Time.deltaTime);
         }
     }
     public override void OnTriggerEnter(Collider other)
     {
-        if (IsMove == true)
+        if (IsGo == true)
         {
-            base.OnTriggerEnter(other);
+            if (other.gameObject.CompareTag("ObjDestroy"))
+            {
+                Destroy(this.gameObject);
+                GameManager.Instance.Pain += 1;
+            }
+            else if (other.gameObject.CompareTag("Bullet") && GameManager.Instance.Hp > 0)
+            {
+                Hp -= GameManager.Instance.Damage;
+                StartCoroutine(EnemyHit());
+            }
+            else if (other.gameObject.CompareTag("Player"))
+            {
+                if (GameManager.Instance.IsHit == false && GameManager.Instance.IsShild == false)
+                {
+                    GameManager.Instance.Hp -= Damage;
+                }
+                Destroy(this.gameObject);
+            }
         }
     }
 }

@@ -29,8 +29,8 @@ public class SplitEnemy : Enemy
                     }
                 }
             }
+            GameManager.Instance.Score += Score;
             Destroy(this.gameObject);
-            //점수 증가
         }
     }
     public override IEnumerator EnemyHit()

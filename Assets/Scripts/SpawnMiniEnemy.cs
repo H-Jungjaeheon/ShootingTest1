@@ -51,8 +51,8 @@ public class SpawnMiniEnemy : Enemy
             {
                 Instantiate(Bullet, transform.position, Quaternion.Euler(90, 0, a));
             }
-            Destroy(this.gameObject);
             GameManager.Instance.Score += Score;
+            Destroy(this.gameObject);
         }   
     }
 }
