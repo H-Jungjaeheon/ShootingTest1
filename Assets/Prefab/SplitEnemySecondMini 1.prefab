@@ -164,11 +164,12 @@ MonoBehaviour:
   Hp: 4
   MaxHp: 4
   Damage: 3
-  Speed: 11
+  Speed: 10
   MoveCount: 0
   MaxMoveCount: 3
   Score: 80
   IsMove: 0
+  IsGo: 0
   LOR: 0
   material:
   - {fileID: 2100000, guid: a3198cfbb50be4740a419578ecd38679, type: 2}

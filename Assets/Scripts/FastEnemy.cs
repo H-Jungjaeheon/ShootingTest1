@@ -7,13 +7,14 @@ public class FastEnemy : Enemy
     [SerializeField] private GameObject Warining;
     [SerializeField] private float StartMoveCount;
 
-    public override void Start()
+    public override void Awake()
     {
         IsGo = false;
         Hp *= GameManager.Instance.Stage + GameManager.Instance.Damage;
         MaxHp *= GameManager.Instance.Stage + GameManager.Instance.Damage;
-        IsMove = false;
+        IsMove = true;
         rigid = GetComponent<Rigidbody>();
+        mesh = GetComponent<MeshRenderer>();
         Invoke("StartMove", StartMoveCount);
     }
     void StartMove()

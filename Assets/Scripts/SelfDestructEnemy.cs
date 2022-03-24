@@ -7,8 +7,9 @@ public class SelfDestructEnemy : Enemy
     [SerializeField] private float SelfDestructCount, MaxSelfDestructCount;
     [SerializeField] private GameObject Bullet;
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         MaxSelfDestructCount = Random.Range(4, 6);
         IsMove = true;
     }

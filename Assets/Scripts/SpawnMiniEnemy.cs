@@ -7,8 +7,9 @@ public class SpawnMiniEnemy : Enemy
     [SerializeField] private float ShootCount, MaxShootCount, XSpeed, RandMove;
     [SerializeField] private GameObject Bullet;
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         RandMove = Random.Range(0, 2);
         if(RandMove == 0)
         {

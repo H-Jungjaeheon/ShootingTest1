@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     public MeshRenderer mesh;
 
     // Start is called before the first frame update
-    public virtual void Start()
+    public virtual void Awake()
     {
         IsGo = true;
         Hp *= GameManager.Instance.Stage + GameManager.Instance.Damage;
