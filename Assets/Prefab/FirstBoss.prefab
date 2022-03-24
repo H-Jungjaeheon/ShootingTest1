@@ -1275,7 +1275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hp: 190
   MaxHp: 190
-  Damage: 10
+  Damage: 4
   Speed: 1.5
   MoveCount: 0
   MaxMoveCount: 0

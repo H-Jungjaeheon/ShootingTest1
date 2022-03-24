@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    [SerializeField] float Speed, Damage;
+    public float Speed, Damage;
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         Damage = GameManager.Instance.Stage * Damage;
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         BulletMove();
     }
-    private void OnTriggerEnter(Collider other)
+    public virtual void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
@@ -31,7 +31,7 @@ public class EnemyBullet : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    void BulletMove()
+    public virtual void BulletMove()
     {
         float Z = Speed * Time.deltaTime;
         this.transform.Translate(0, -Z, 0);

@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
         IsMove = true;
         rigid = GetComponent<Rigidbody>();
         mesh = GetComponent<MeshRenderer>();
+        Damage *= GameManager.Instance.Stage;
     }
     // Update is called once per frame
     public virtual void FixedUpdate()

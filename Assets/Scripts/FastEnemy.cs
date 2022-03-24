@@ -16,6 +16,7 @@ public class FastEnemy : Enemy
         rigid = GetComponent<Rigidbody>();
         mesh = GetComponent<MeshRenderer>();
         Invoke("StartMove", StartMoveCount);
+        Damage *= GameManager.Instance.Stage;
     }
     void StartMove()
     {

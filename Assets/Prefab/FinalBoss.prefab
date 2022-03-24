@@ -4968,7 +4968,7 @@ GameObject:
   - component: {fileID: 4675241186524646889}
   - component: {fileID: 4675241186524646888}
   - component: {fileID: 4675241186524646891}
-  - component: {fileID: 4675241186524646890}
+  - component: {fileID: 7948369642615013276}
   - component: {fileID: 4675241186524646895}
   - component: {fileID: 8341688430086868629}
   m_Layer: 0
@@ -4986,7 +4986,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4675241186524646885}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10, z: 2.21}
+  m_LocalPosition: {x: 0, y: 10, z: 15}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 1768597025496263796}
@@ -5055,7 +5055,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4675241186524646890
+--- !u!114 &7948369642615013276
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5064,24 +5064,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 4675241186524646885}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9039ad4f05c91d04eb654ae3a872cd7a, type: 3}
+  m_Script: {fileID: 11500000, guid: eeb02e0492273f944b36518601660008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 8
-  MaxHp: 8
-  Damage: 5
-  Speed: 3
+  Hp: 240
+  MaxHp: 240
+  Damage: 6
+  Speed: 2
   MoveCount: 0
-  MaxMoveCount: 5
-  Score: 100
+  MaxMoveCount: 0
+  Score: 10000
   IsMove: 0
   IsGo: 0
   LOR: 0
   material:
-  - {fileID: 2100000, guid: 451c8c89b4499334084c4f0ec488b2ff, type: 2}
+  - {fileID: 2100000, guid: b47a27375717d8344ab4789b9f50417d, type: 2}
   - {fileID: 2100000, guid: f53f71ce8862f364594932978eb223f2, type: 2}
   rigid: {fileID: 4675241186524646895}
-  mesh: {fileID: 0}
+  mesh: {fileID: 4675241186524646888}
+  a: 0
+  IsPattonUse: 0
+  BossBullet:
+  - {fileID: 8253843272344991236, guid: c4a723a186c238f4d97c1c261cb3de03, type: 3}
+  - {fileID: 8648186110898909578, guid: 98d044173a100144e9aef01032f2428e, type: 3}
+  Enemys: []
+  players: {fileID: 0}
 --- !u!54 &4675241186524646895
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5108,7 +5115,7 @@ Animator:
   m_GameObject: {fileID: 4675241186524646885}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ccef72c5b21932b489e0d14f02d8eaf0, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
