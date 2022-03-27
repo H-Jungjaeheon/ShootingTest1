@@ -1273,8 +1273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece14c6b10d9cdf4aae499388b898c5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 190
-  MaxHp: 190
+  Hp: 200
+  MaxHp: 200
   Damage: 4
   Speed: 1.5
   MoveCount: 0
@@ -1288,6 +1288,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: f53f71ce8862f364594932978eb223f2, type: 2}
   rigid: {fileID: 1166844500971649954}
   mesh: {fileID: 1166844500971649957}
+  DeadEffect: {fileID: 4633777358899434712, guid: 87094e2533f29a743a7b16b558db47e7, type: 3}
   a: 0
   IsPattonUse: 0
   BossBullet:

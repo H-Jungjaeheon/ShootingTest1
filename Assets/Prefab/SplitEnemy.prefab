@@ -398,6 +398,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: f53f71ce8862f364594932978eb223f2, type: 2}
   rigid: {fileID: 6592152234061720}
   mesh: {fileID: 8059711648644749279}
+  DeadEffect: {fileID: 4633777358899434712, guid: 87094e2533f29a743a7b16b558db47e7, type: 3}
   MiniObj: {fileID: 8363004068495837140, guid: cdc20bb68d9e6d241812b322abb68c59, type: 3}
   IsSpawnMini: 1
   MonsterCount: 1

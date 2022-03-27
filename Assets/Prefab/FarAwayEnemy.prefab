@@ -139,12 +139,14 @@ MonoBehaviour:
   MaxMoveCount: 0
   Score: 200
   IsMove: 0
+  IsGo: 0
   LOR: 0
   material:
   - {fileID: 2100000, guid: 451c8c89b4499334084c4f0ec488b2ff, type: 2}
   - {fileID: 2100000, guid: f53f71ce8862f364594932978eb223f2, type: 2}
   rigid: {fileID: 0}
   mesh: {fileID: 0}
+  DeadEffect: {fileID: 4633777358899434712, guid: 87094e2533f29a743a7b16b558db47e7, type: 3}
   ShootCount: 0
   MaxShootCount: 4
   Bullet: {fileID: 6978760881217848221, guid: a09bd127ace9eed4ea877abd9d8a4a2b, type: 3}

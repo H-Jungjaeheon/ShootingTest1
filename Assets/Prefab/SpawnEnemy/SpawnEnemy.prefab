@@ -140,6 +140,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: f53f71ce8862f364594932978eb223f2, type: 2}
   rigid: {fileID: 4693399478351390141}
   mesh: {fileID: 4693399478351390138}
+  DeadEffect: {fileID: 4633777358899434712, guid: 87094e2533f29a743a7b16b558db47e7, type: 3}
   SpawnCount: 0
   MaxSpawnCount: 7
   Spawnenemy: {fileID: 4694187052035572135, guid: 228205dc5b38f294fb56f8171203b217, type: 3}

@@ -183,6 +183,8 @@ public class Player : MonoBehaviour
     IEnumerator PlayerHit()
     {
         GameManager.Instance.IsHit = true;
+        //GameManager.Instance.DamageShake();
+        GameManager.Instance.Source.GenerateImpulse();
         mesh.material = materials[1];
         yield return new WaitForSeconds(3);
         mesh.material = materials[0];

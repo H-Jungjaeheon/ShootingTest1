@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public Material[] material;
     public Rigidbody rigid;
     public MeshRenderer mesh;
+    public GameObject DeadEffect;
 
     // Start is called before the first frame update
     public virtual void Awake()
@@ -75,6 +76,7 @@ public class Enemy : MonoBehaviour
     {
         if(Hp <= 0)
         {
+            Instantiate(DeadEffect).transform.position = transform.position;
             Destroy(this.gameObject);
             GameManager.Instance.Score += Score;
         }

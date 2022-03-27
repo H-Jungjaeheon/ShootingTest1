@@ -135,12 +135,14 @@ MonoBehaviour:
   MaxMoveCount: 0
   Score: 800
   IsMove: 0
+  IsGo: 0
   LOR: 0
   material:
   - {fileID: 2100000, guid: a24037aa2dae5b145b048dcaf948032a, type: 2}
   - {fileID: 2100000, guid: f53f71ce8862f364594932978eb223f2, type: 2}
   rigid: {fileID: 6456181120623051810}
   mesh: {fileID: 6456181120623051813}
+  DeadEffect: {fileID: 4633777358899434712, guid: 87094e2533f29a743a7b16b558db47e7, type: 3}
   Warining: {fileID: 7612093609921484120}
   StartMoveCount: 3
 --- !u!1 &6695476998871898502

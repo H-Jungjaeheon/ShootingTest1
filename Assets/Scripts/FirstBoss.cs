@@ -225,6 +225,7 @@ public class FirstBoss : Enemy
     {
         if (Hp <= 0)
         {
+            Instantiate(DeadEffect).transform.position = transform.position;
             Destroy(this.gameObject);
             GameManager.Instance.Score += Score;
         }

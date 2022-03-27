@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     public float Speed, Damage;
+    [SerializeField] private GameObject BulletParticle;
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -28,6 +29,7 @@ public class EnemyBullet : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("ObjDestroy") || other.gameObject.CompareTag("RedCell"))
         {
+            Instantiate(BulletParticle).transform.position = transform.position;
             Destroy(this.gameObject);
         }
     }

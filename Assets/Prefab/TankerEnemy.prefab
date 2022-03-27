@@ -141,6 +141,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: f53f71ce8862f364594932978eb223f2, type: 2}
   rigid: {fileID: 6155031316428518180}
   mesh: {fileID: 6155031316428518179}
+  DeadEffect: {fileID: 4633777358899434712, guid: 87094e2533f29a743a7b16b558db47e7, type: 3}
   RandReflect: 0
   ReflectBullet: {fileID: 6849841529610070293, guid: 135f5069a676256458a1b3c9ac8b032e, type: 3}
 --- !u!1 &6364529203888454618

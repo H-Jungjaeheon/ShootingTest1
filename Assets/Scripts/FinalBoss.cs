@@ -5,43 +5,41 @@ using UnityEngine;
 public class FinalBoss : Enemy
 {
     [Header("패턴 관련 변수")]
-    [SerializeField] private float a;
-    [SerializeField] private bool IsPattonUse;
+    [SerializeField] private float A, B, C, MoveShoot;
+    [SerializeField] private bool IsPattonUse, IsPattonMove, IsDead;
     [SerializeField] private GameObject[] BossBullet, Enemys;
-    [SerializeField] private GameObject players;
+    [SerializeField] private GameObject players, Warning;
 
     public override void Awake()
     {
         IsGo = true;
-        IsMove = false;
         rigid = GetComponent<Rigidbody>();
         mesh = GetComponent<MeshRenderer>();
         Hp *= GameManager.Instance.Stage + GameManager.Instance.Damage;
         MaxHp *= GameManager.Instance.Stage + GameManager.Instance.Damage;
+        B = 0; //3패턴 값
     }
     // Update is called once per frame
     public override void FixedUpdate()
     {
         players = GameObject.FindGameObjectWithTag("Player");
-        a = players.transform.position.x * 3;
-        if (IsMove == true)
-        {
-            Move();
-        }
-        else
+        if(IsMove == false && IsDead == false)
         {
             StartMove();
         }
-        if(IsPattonUse == false && IsMove == true)
+        if(IsPattonMove == true && IsDead == false)
+        {
+            Move();
+        }
+        if(IsPattonUse == false && IsMove == true && IsDead == false)
         {
             Attack();
         }
         Dead();
-        mesh.material = material[0];
     }
-    void Attack() //공격 끝난 후 쉬는 타임 존재
+    void Attack() 
     {
-        int a = Random.Range(0, 1);
+        int a = Random.Range(0, 6);
         switch (a)
         {
             case 0:
@@ -50,38 +48,104 @@ public class FinalBoss : Enemy
                 break;
             case 1:
                 IsPattonUse = true;
-                Instantiate(BossBullet[0], transform.position, Quaternion.Euler(0, 0, 0));
                 StartCoroutine(Patton2());
                 break;
             case 2:
                 IsPattonUse = true;
-                Instantiate(BossBullet[0], transform.position, Quaternion.Euler(0, 0, 0));
                 StartCoroutine(Patton3());
                 break;
             case 3:
                 IsPattonUse = true;
-                Instantiate(BossBullet[0], transform.position, Quaternion.Euler(0, 0, 0));
                 StartCoroutine(Patton4());
+                break;
+            case 4:
+                IsPattonUse = true;
+                StartCoroutine(Patton5());
+                break;
+            case 5:
+                IsPattonUse = true;
+                StartCoroutine(Patton6());
                 break;
         }
     }
     IEnumerator Patton1()
     {
-        for (int z = 0; z < 361; z += 10)
+        for (int z = 80; z < 141; z += 5)
         {
-            Instantiate(BossBullet[1], transform.position, Quaternion.Euler(90, 0, z));
+            for(int x = -10; x <= 10; x += 10)
+            {
+                Instantiate(BossBullet[0], transform.position, Quaternion.Euler(z, 0, x));
+            }
         }
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
+        for (int z = 80; z < 141; z += 5)
+        {
+            for (int x = -20; x <= 20; x += 40)
+            {
+                Instantiate(BossBullet[0], transform.position, Quaternion.Euler(z, 0, x));
+            }
+        }
+        yield return new WaitForSeconds(1);
+        for (int z = 80; z < 141; z += 5)
+        {
+            for (int x = -10; x <= 10; x += 10)
+            {
+                Instantiate(BossBullet[0], transform.position, Quaternion.Euler(z, 0, x));
+            }
+        }
+        yield return new WaitForSeconds(6);
         IsPattonUse = false;
         yield return null;
     }
     IEnumerator Patton2()
     {
+        for (int a = 0; a <= 5; a += 1)
+        {
+            A = players.transform.position.x * 4;
+            Instantiate(BossBullet[1], transform.position, Quaternion.Euler(0, -A, 0));
+            yield return new WaitForSeconds(1.3f);
+        }
+        yield return new WaitForSeconds(4);
+        IsPattonUse = false;
+        yield return null;
+    }
+    IEnumerator Patton3()
+    {
+        for(int a = 0; a <= 750; a += 15)
+        {
+            for (int b = 0; b <= 360; b += 60)
+            {
+                Instantiate(BossBullet[0], transform.position, Quaternion.Euler(90, 0, b + a));
+            }
+            if(a % 150 == 0)
+            {
+                if(B % 2 == 0)
+                {
+                    for (int c = 0; c <= 360; c += 15)
+                        Instantiate(BossBullet[2], transform.position, Quaternion.Euler(90, 0, c));
+                    B++;
+                }
+                else
+                {
+                    for (int c = 0; c <= 360; c += 15)
+                        Instantiate(BossBullet[3], transform.position, Quaternion.Euler(90, 0, c));
+                    B++;
+                }
+            }
+            yield return new WaitForSeconds(0.4f);
+        }
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+        yield return new WaitForSeconds(4);
+        IsPattonUse = false;
+        yield return null;
+    }
+    IEnumerator Patton4()
+    {
         Instantiate(Enemys[0], transform.position, Quaternion.Euler(0, 0, 0));
         yield return new WaitForSeconds(0.8f);
         for (int a = -2; a < 3; a += 4)
         {
-            Instantiate(Enemys[0], transform.position + new Vector3(a,0,0), Quaternion.Euler(0, 0, 0));
+            Instantiate(Enemys[0], transform.position + new Vector3(a, 0, 0), Quaternion.Euler(0, 0, 0));
         }
         yield return new WaitForSeconds(2f);
         for (int a = -3; a < 4; a += 6)
@@ -90,83 +154,125 @@ public class FinalBoss : Enemy
         }
         yield return new WaitForSeconds(2f);
         Instantiate(Enemys[2], transform.position, Quaternion.Euler(0, 0, 0));
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(9);
         IsPattonUse = false;
         yield return null;
     }
-    IEnumerator Patton3()
+    IEnumerator Patton5()
     {
-        float a = 0;
-        float d = 0;
-        for(int b = 0; b < 1501; b += 15)
-        {
-            for (int c = 0; c < 271; c += 90)
-            {
-                Instantiate(BossBullet[0], transform.position, Quaternion.Euler(90, 0, a + b + c));
-                a+=0.5f;
-            }
-            yield return new WaitForSeconds(0.07f);
-            d -= 47;
-            transform.rotation = Quaternion.Euler(0, d, 0);
-        }
+        Warning.SetActive(true);
+        yield return new WaitForSeconds(1);
+        Warning.SetActive(false);
+        IsPattonMove = true;
+        C = 1;
+        yield return new WaitForSeconds(3);
+        transform.position = new Vector3(5, 10, -17);
+        transform.rotation = Quaternion.Euler(0, 180, 0);
+        Warning.SetActive(true);
+        yield return new WaitForSeconds(1);
+        Warning.SetActive(false);
+        C = 0;
+        yield return new WaitForSeconds(3);
+        transform.position = new Vector3(-5, 10, 50);
         transform.rotation = Quaternion.Euler(0, 0, 0);
+        Warning.SetActive(true);
+        yield return new WaitForSeconds(1);
+        Warning.SetActive(false);
+        C = 1;
+        yield return new WaitForSeconds(3);
+        transform.position = new Vector3(0, 25, 15);
+        C = 2;
+        yield return new WaitForSeconds(4);
+        IsPattonUse = false;
+        yield return null;
+    }
+    IEnumerator Patton6()
+    {
+        for (int a = -9; a <= 9; a += 3)
+        {
+            Instantiate(BossBullet[4], transform.position + new Vector3(a, 0, 25), Quaternion.Euler(90, 0, 0));
+        }
+        yield return new WaitForSeconds(1.5f);
+        for (float a = -7.5f; a <= 7.5f; a += 3f)
+        {
+            Instantiate(BossBullet[4], transform.position + new Vector3(a, 0, 25), Quaternion.Euler(90, 0, 0));
+        }
+        yield return new WaitForSeconds(1.5f);
+        for (int a = -9; a <= 9; a += 3)
+        {
+            Instantiate(BossBullet[4], transform.position + new Vector3(a, 0, 25), Quaternion.Euler(90, 0, 0));
+        }
         yield return new WaitForSeconds(3);
         IsPattonUse = false;
         yield return null;
     }
-    IEnumerator Patton4()
+    public override void Move()
     {
-        for (int z = 0; z < 16; z += 1)
+        MoveShoot += Time.deltaTime;
+        if (C == 0 && transform.position.z < 50) //올라감
         {
-            for (int i = -30; i < 31; i += 15)
+            transform.position += new Vector3(0, 0, Speed * Time.deltaTime);
+            if(MoveShoot > 0.13f)
             {
-                Instantiate(BossBullet[0], transform.position, Quaternion.Euler(90, 0, i));
+                MoveShoot = 0;
+                for(int a = -90; a <= 90; a+= 180)
+                Instantiate(BossBullet[0], transform.position, Quaternion.Euler(0, 0, a));
             }
-            yield return new WaitForSeconds(0.1f);
         }
-        for (int z = 0; z < 16; z += 1)
+        else if(C == 1 && transform.position.z > -17)
         {
-            for (int i = -30; i < 31; i += 15)
+            transform.position -= new Vector3(0, 0, Speed * Time.deltaTime);
+            if (MoveShoot > 0.13f)
             {
-                Instantiate(BossBullet[0], transform.position, Quaternion.Euler(90, 0, i + z));
+                MoveShoot = 0;
+                for (int a = -90; a <= 90; a += 180)
+                    Instantiate(BossBullet[0], transform.position, Quaternion.Euler(0, 0, a));
             }
-            yield return new WaitForSeconds(0.1f);
-        }
-        for (int z = 15; z > -16; z -= 1)
+        }    
+        else if(C == 2)
         {
-            for (int i = -30; i < 31; i += 15)
+            if (transform.position.y <= 10)
             {
-                Instantiate(BossBullet[0], transform.position, Quaternion.Euler(90, 0, i + z));
+                C = 0;
+                IsPattonMove = false;
+                MoveShoot = 0;
+                for (int a = 0; a <= 360; a += 10)
+                {
+                    Instantiate(BossBullet[0], transform.position, Quaternion.Euler(90, 0, a));
+                }
+                transform.position = new Vector3(0, 10, 15);
             }
-            yield return new WaitForSeconds(0.1f);
+            else
+                transform.position -= new Vector3(0, Speed * Time.deltaTime, 0);
         }
-        yield return new WaitForSeconds(3);
-        IsPattonUse = false;
-        yield return null;
     }
     void StartMove()
     {
-        if(transform.position.z >= 15)
+        if(transform.position.z >= 16)
         {
-            transform.position = Vector3.MoveTowards(transform.position, transform.position - new Vector3(0, 0, 15), 2 * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(0, 10, 15), 6 * Time.deltaTime);
         }
         else
         {
             IsMove = true;
         }
     }
-    public override void Move()
-    {
-        //transform.position -= new Vector3(Speed * Time.deltaTime, 0, 0);       
-    }
 
     public override void Dead()
     {
-        if (Hp <= 0)
+        if (Hp <= 0 && IsDead == false)
         {
-            Destroy(this.gameObject);
-            GameManager.Instance.Score += Score;
+            IsDead = true;
+            StartCoroutine(DeadEffects());
         }
+    }
+    IEnumerator DeadEffects()
+    {
+        Instantiate(DeadEffect).transform.position = transform.position;
+        yield return new WaitForSeconds(3);
+        Destroy(this.gameObject);
+        GameManager.Instance.Score += Score;
+        yield return null;
     }
     public override void OnTriggerEnter(Collider other)
     {
@@ -188,7 +294,7 @@ public class FinalBoss : Enemy
     public override IEnumerator EnemyHit()
     {
         mesh.material = material[1];
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.05f);
         mesh.material = material[0];
         yield return null;
     }

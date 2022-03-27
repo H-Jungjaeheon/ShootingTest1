@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,12 +12,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Image HpBar, PainBar;
     [SerializeField] private Text Hptext, PainText,ScoreText;
     [SerializeField] private GameObject[] BoomIcon;
+    public CinemachineImpulseSource Source;
 
     // Start is called before the first frame update
     void Start()
     {
         //HpBar = GetComponent<Image>();
+        Source = GetComponent<CinemachineImpulseSource>();
+        //DamageShake();
+        Source.GenerateImpulse();
         Instance = this;
+        Pain = Stage == 1 ? 10 : 30; 
+        if(Stage == 1)
+        {
+            Score = 0;
+        }
     }
 
     // Update is called once per frame
@@ -33,9 +43,17 @@ public class GameManager : MonoBehaviour
         {
             Hp = MaxHp;
         }
+        else if(Hp < 0)
+        {
+            Hp = 0;
+        }
         if(Pain <= 0)
         {
             Pain = 0;
+        }
+        else if(Pain > MaxPain)
+        {
+            Pain = MaxPain;
         }
         HpBar.fillAmount = Hp / MaxHp;
         PainBar.fillAmount = Pain / MaxPain;
@@ -63,6 +81,14 @@ public class GameManager : MonoBehaviour
         {
             PainText.text = $"  {Pain}\n-----\n{MaxPain}";
         }
+    }
+    public void DamageShake()
+    {
+        Source.m_ImpulseDefinition.m_AmplitudeGain = 30;
+        Source.m_ImpulseDefinition.m_FrequencyGain = 30;
+        Source.m_ImpulseDefinition.m_TimeEnvelope.m_SustainTime = 0.4f;
+        Source.m_ImpulseDefinition.m_TimeEnvelope.m_DecayTime = 0.1f;
+        Source.GenerateImpulse();
     }
     void Booms()
     {

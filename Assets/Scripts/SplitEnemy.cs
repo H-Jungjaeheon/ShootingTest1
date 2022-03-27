@@ -29,6 +29,7 @@ public class SplitEnemy : Enemy
                     }
                 }
             }
+            Instantiate(DeadEffect).transform.position = transform.position;
             GameManager.Instance.Score += Score;
             Destroy(this.gameObject);
         }

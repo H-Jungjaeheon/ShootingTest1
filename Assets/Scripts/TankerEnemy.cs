@@ -29,8 +29,8 @@ public class TankerEnemy : Enemy
             else
             {
                 Hp -= GameManager.Instance.Damage;
+                StartCoroutine(EnemyHit());
             }
-            StartCoroutine(EnemyHit());
         }
         else if (other.gameObject.CompareTag("Player"))
         {
