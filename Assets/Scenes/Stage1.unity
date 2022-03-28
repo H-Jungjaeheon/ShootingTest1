@@ -2761,6 +2761,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FinalBoss
       objectReference: {fileID: 0}
+    - target: {fileID: 4675241186524646885, guid: e245c7add3ff38a4d92ed619fc43d38d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4675241186524646894, guid: e245c7add3ff38a4d92ed619fc43d38d, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -3034,7 +3038,7 @@ MonoBehaviour:
   ShildObj: {fileID: 703824462}
   BoomObj: []
   materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 3}
   - {fileID: 2100000, guid: 526b8cf50fbd367418c24f6391d0bc7f, type: 2}
   mesh: {fileID: 1035815449}
   IsBoom: 0
@@ -3334,7 +3338,8 @@ MonoBehaviour:
   - {fileID: 1990662339}
   SpawnCount: 0
   MaxSpawnCount: 2
-  SpawnText: 
+  Spawntime: 0
+  dataIdx: 0
 --- !u!1 &1211657682
 GameObject:
   m_ObjectHideFlags: 0
