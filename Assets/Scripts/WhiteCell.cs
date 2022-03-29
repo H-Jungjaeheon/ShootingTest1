@@ -22,8 +22,11 @@ public class WhiteCell : MonoBehaviour
     {
         if (Hp <= 0)
         {
-            int a = Random.Range(0, 7);
+            int a = Random.Range(0, 9);
             //파티클 효과
+            if(a > 6)
+            Instantiate(Item[2], transform.position, Quaternion.Euler(0, 0, 0));     
+            else
             Instantiate(Item[a], transform.position, Quaternion.Euler(0, 0, 0));
             Destroy(this.gameObject);
         }

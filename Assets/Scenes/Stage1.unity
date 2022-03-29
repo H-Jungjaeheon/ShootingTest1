@@ -3384,7 +3384,7 @@ Skybox:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1261089942}
   m_Enabled: 1
-  m_CustomSkybox: {fileID: 0}
+  m_CustomSkybox: {fileID: 2100000, guid: c61ba72365a8bb045bf7757be7c2e1a4, type: 2}
 --- !u!20 &1261089944
 Camera:
   m_ObjectHideFlags: 0
@@ -3435,7 +3435,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1261089942}
-  m_LocalRotation: {x: -0.42988053, y: 0.0011765842, z: 0.000602816, w: 0.90288484}
+  m_LocalRotation: {x: -0.4461974, y: 0.0011674493, z: 0.0006231193, w: 0.89493364}
   m_LocalPosition: {x: 0, y: -12.959998, z: -12.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3617,14 +3617,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354157140}
-  m_LocalRotation: {x: 0.42261794, y: 0.0011289032, z: -0.00048312105, w: 0.9063071}
+  m_LocalRotation: {x: 0.44619742, y: 0.0011129733, z: -0.00051385735, w: 0.8949337}
   m_LocalPosition: {x: 0, y: 21.3, z: -12.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1942247827}
   m_Father: {fileID: 0}
   m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 50, y: 0.146, z: 0.007}
+  m_LocalEulerAnglesHint: {x: 53, y: 0.146, z: 0.007}
 --- !u!114 &1354157143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5136,7 +5136,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2114776254}
-  m_LocalRotation: {x: 0.42261794, y: 0.0011289034, z: -0.00048312105, w: 0.90630716}
+  m_LocalRotation: {x: 0.44619745, y: 0.0011129734, z: -0.0005138574, w: 0.89493376}
   m_LocalPosition: {x: 0, y: 21.3, z: -12.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
