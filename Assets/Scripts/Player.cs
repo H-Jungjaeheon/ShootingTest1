@@ -46,10 +46,10 @@ public class Player : MonoBehaviour
     {
         for (int a = 0; a < BoomObj.Length; a++)
         {
-            if(BoomObj[a].GetComponent<Enemy>().IsGo == true)
-            {
+            //if(BoomObj[a].GetComponent<Enemy>().IsGo == true)
+            //{
                 BoomObj[a].GetComponent<Enemy>().Hp -= GameManager.Instance.Damage * 10;
-            }
+            //}
         }
         IsBoom = false;
         GameManager.Instance.Boom -= 1;
