@@ -25,9 +25,9 @@ public class SpawnEnemy : Enemy
             {
                 Instantiate(Bullet, transform.position, Quaternion.Euler(90, 0, a));
             }
-            GameManager.Instance.Score += Score;
             if (GameManager.Instance.IsBossSpawn == false)
             {
+                GameManager.Instance.Score += Score;
                 GameManager.Instance.EnemyDead++;
             }
             Destroy(this.gameObject);

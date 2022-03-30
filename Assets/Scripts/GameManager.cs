@@ -4,29 +4,35 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Playables;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {    public static GameManager Instance { get; set; }
-    public float MaxHp, Hp, Damage, MaxBoom, Boom, Score, Stage, Pain, MaxPain, ShildTime, EnemyDead;
-    public bool IsHit, IsShild, IsBossSpawn, Cutscene;
+    public float MaxHp, Hp, Damage, MaxBoom, Boom, Score, Pain, MaxPain, ShildTime, EnemyDead;
+    public int Stage;
+    public bool IsHit, IsShild, IsBossSpawn, Cutscene, IsBossDead;
     [SerializeField] private float MaxEnemyDead;
     [SerializeField] private Image HpBar, PainBar;
-    [SerializeField] private Text Hptext, PainText,ScoreText;
-    [SerializeField] private GameObject[] BoomIcon, Boss, Spawner;
+    [SerializeField] private Text Hptext, PainText,ScoreText, StageStartText, StageEndText;
+    [SerializeField] private GameObject[] BoomIcon, Boss, Spawner, AnimBoss;
     [SerializeField] private PlayableDirector[] BossAnimation;
+    [SerializeField] private PlayableDirector StageStart, StageEnd;
     public CinemachineImpulseSource Source;
 
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
         if (Stage == 1)
-            MaxEnemyDead = 82;
+            MaxEnemyDead = 143;
         else
         {
             MaxEnemyDead = 20;
         }
         BossAnimation[0].Stop();
+        StageStartText.text = $"Stage {Stage} Start!";
         Source = GetComponent<CinemachineImpulseSource>();
+        StageStart.Play();
         //DamageShake();
         //Source.GenerateImpulse();
         Instance = this;
@@ -37,7 +43,6 @@ public class GameManager : MonoBehaviour
             Score = 0;
         }
     }
-    
     // Update is called once per frame
     void Update()
     {
@@ -45,7 +50,28 @@ public class GameManager : MonoBehaviour
         Booms();
         ScoreTexts();
         StartCoroutine(BossSpawn());
+        StartCoroutine(BossDead());
         ShildTime -= Time.deltaTime;
+    }
+    IEnumerator BossDead()
+    {
+        if(IsBossDead == true)
+        {
+            IsBossDead = false;
+            yield return new WaitForSeconds(4);
+            StageEnd.Play();
+            yield return null;
+        }
+    }
+    void NextStage()
+    {
+        if (Stage == 1)
+        {
+            Stage++;
+            SceneManager.LoadScene("Stage2");
+        }
+        else
+            SceneManager.LoadScene("Clear");
     }
     IEnumerator BossSpawn()
     {
@@ -59,6 +85,7 @@ public class GameManager : MonoBehaviour
                 BossAnimation[0].Play();
                 yield return new WaitForSeconds(12);
                 Cutscene = false;
+                Destroy(AnimBoss[0].gameObject);
                 Instantiate(Boss[0], Spawner[0].transform.position, Boss[0].transform.rotation);
             }
             else if (Stage == 2 && EnemyDead >= MaxEnemyDead)
@@ -67,7 +94,9 @@ public class GameManager : MonoBehaviour
                 EnemyDead = 0;
                 IsBossSpawn = true;
                 BossAnimation[1].Play();
+                yield return new WaitForSeconds(12);
                 Cutscene = false;
+                Destroy(AnimBoss[1].gameObject);
                 Instantiate(Boss[1], Spawner[0].transform.position, Boss[1].transform.rotation);
             }
         }

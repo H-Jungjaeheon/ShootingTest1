@@ -263,6 +263,7 @@ public class FinalBoss : Enemy
         if (Hp <= 0 && IsDead == false)
         {
             IsDead = true;
+            GameManager.Instance.IsBossDead = true;
             GameManager.Instance.IsBossSpawn = true;
             StartCoroutine(DeadEffects());
         }

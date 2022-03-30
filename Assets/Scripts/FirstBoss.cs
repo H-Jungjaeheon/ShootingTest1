@@ -228,6 +228,8 @@ public class FirstBoss : Enemy
             Instantiate(DeadEffect).transform.position = transform.position;
             Destroy(this.gameObject);
             GameManager.Instance.IsBossSpawn = true;
+            GameManager.Instance.EnemyDead = 0;
+            GameManager.Instance.IsBossDead = true;
             GameManager.Instance.Score += Score;
         }
     }

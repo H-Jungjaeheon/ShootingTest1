@@ -16,6 +16,7 @@ public class EnemySpawner : MonoBehaviour //전체적 흐름 : 텍스트 파일과 위치를 �
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
         dataIdx = 0;
         EnemySpawn(Resources.Load<TextAsset>($"Stage{GameManager.Instance.Stage}Text").text); //리소스파일에 있는 텍스트를 가져옴
     }
@@ -87,7 +88,7 @@ public class EnemySpawner : MonoBehaviour //전체적 흐름 : 텍스트 파일과 위치를 �
                 int b = Random.Range(0, 5);
                 if (a >= 5)
                     Instantiate(Enemy[7], Spawner[b].transform.position, transform.rotation);
-                else if (a < 5 && a >= 8)
+                else if (a < 5)
                     Instantiate(Enemy[8], Spawner[b].transform.position, transform.rotation);
             }
         } 

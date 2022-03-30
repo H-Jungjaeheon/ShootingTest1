@@ -30,11 +30,16 @@ public class SplitEnemy : Enemy
                 }
             }
             Instantiate(DeadEffect).transform.position = transform.position;
-            GameManager.Instance.Score += Score;
             if (GameManager.Instance.IsBossSpawn == false && IsSpawnMini == true)
             {
                 GameManager.Instance.EnemyDead += 3;
+                GameManager.Instance.Score += Score;
+
             }
+            else if(GameManager.Instance.IsBossSpawn == true && IsSpawnMini == true)
+                GameManager.Instance.EnemyDead+=3;
+            else if (GameManager.Instance.IsBossSpawn == false && IsSpawnMini == false)
+                GameManager.Instance.EnemyDead ++;
             else
                 GameManager.Instance.EnemyDead++;
             Destroy(this.gameObject);

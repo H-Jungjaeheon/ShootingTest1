@@ -40,9 +40,8 @@ public class TankerEnemy : Enemy
         {
             if(GameManager.Instance.IsHit == false && GameManager.Instance.IsShild == false)
             {
-                GameManager.Instance.Hp -= Damage;
+                GameManager.Instance.Hp -= Damage / 2;
             }
-            Destroy(this.gameObject);
         }
     }
 }

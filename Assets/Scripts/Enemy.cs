@@ -78,9 +78,9 @@ public class Enemy : MonoBehaviour
         {
             Instantiate(DeadEffect).transform.position = transform.position;
             Destroy(this.gameObject);
-            GameManager.Instance.Score += Score;
             if(GameManager.Instance.IsBossSpawn == false)
             {
+                GameManager.Instance.Score += Score;
                 GameManager.Instance.EnemyDead++;
             }
         }
@@ -105,7 +105,7 @@ public class Enemy : MonoBehaviour
         {
             if(GameManager.Instance.IsHit == false && GameManager.Instance.IsShild == false)
             {
-                GameManager.Instance.Hp -= Damage;
+                GameManager.Instance.Hp -= Damage / 2;
             }
         }
     }
