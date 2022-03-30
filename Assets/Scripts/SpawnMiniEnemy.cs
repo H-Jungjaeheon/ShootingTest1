@@ -54,6 +54,10 @@ public class SpawnMiniEnemy : Enemy
             }
             Instantiate(DeadEffect).transform.position = transform.position;
             GameManager.Instance.Score += Score;
+            if (GameManager.Instance.IsBossSpawn == false)
+            {
+                GameManager.Instance.EnemyDead++;
+            }
             Destroy(this.gameObject);
         }   
     }

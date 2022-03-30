@@ -1,6 +1,6 @@
 class EnemyData
 {
-    public float SpawnTime;
+    public int SpawnTime;
     public int EnemyKind;
     public int Spawners;
 }

@@ -39,6 +39,10 @@ public class FastEnemy : Enemy
             {
                 Destroy(this.gameObject);
                 GameManager.Instance.Pain += 1;
+                if (GameManager.Instance.IsBossSpawn == false)
+                {
+                    GameManager.Instance.EnemyDead++;
+                }
             }
             else if (other.gameObject.CompareTag("Bullet") && GameManager.Instance.Hp > 0)
             {

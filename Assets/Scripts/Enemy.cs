@@ -79,6 +79,10 @@ public class Enemy : MonoBehaviour
             Instantiate(DeadEffect).transform.position = transform.position;
             Destroy(this.gameObject);
             GameManager.Instance.Score += Score;
+            if(GameManager.Instance.IsBossSpawn == false)
+            {
+                GameManager.Instance.EnemyDead++;
+            }
         }
     }
     public virtual void OnTriggerEnter(Collider other)
@@ -86,6 +90,10 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.CompareTag("ObjDestroy"))
         {
             Destroy(this.gameObject);
+            if (GameManager.Instance.IsBossSpawn == false)
+            {
+                GameManager.Instance.EnemyDead++;
+            }
             GameManager.Instance.Pain += Damage;
         }
         else if (other.gameObject.CompareTag("Bullet") && GameManager.Instance.Hp > 0)
@@ -99,7 +107,6 @@ public class Enemy : MonoBehaviour
             {
                 GameManager.Instance.Hp -= Damage;
             }
-            Destroy(this.gameObject);
         }
     }
     

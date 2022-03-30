@@ -33,6 +33,10 @@ public class SelfDestructEnemy : Enemy
             Instantiate(DeadEffect).transform.position = transform.position;
             Destroy(this.gameObject);
             GameManager.Instance.Score += Score;
+            if (GameManager.Instance.IsBossSpawn == false)
+            {
+                GameManager.Instance.EnemyDead++;
+            }
         }
     }
 }

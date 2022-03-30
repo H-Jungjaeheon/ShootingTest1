@@ -16,6 +16,10 @@ public class TankerEnemy : Enemy
         {
             Destroy(this.gameObject);
             GameManager.Instance.Pain += Damage;
+            if (GameManager.Instance.IsBossSpawn == false)
+            {
+                GameManager.Instance.EnemyDead++;
+            }
         }
         else if (other.gameObject.CompareTag("Bullet") && GameManager.Instance.Hp > 0)
         {

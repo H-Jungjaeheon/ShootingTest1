@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Fire();
-        if (Input.GetKeyDown(KeyCode.J) && GameManager.Instance.Boom > 0 && IsBoom == false)
+        if (Input.GetKeyDown(KeyCode.J) && GameManager.Instance.Boom > 0 && IsBoom == false && BoomObj != null)
         {
             IsBoom = true;
             Boom();
@@ -38,21 +38,23 @@ public class Player : MonoBehaviour
     }
     void Move()
     {
-        float Horizontal = Speed * Input.GetAxis("Horizontal");
-        float Vertical = Speed *  Input.GetAxis("Vertical");
-        rigid.velocity = new Vector3(Horizontal, 0, Vertical);
+        if (GameManager.Instance.Cutscene == false)
+        {
+            float Horizontal = Speed * Input.GetAxis("Horizontal");
+            float Vertical = Speed * Input.GetAxis("Vertical");
+            rigid.velocity = new Vector3(Horizontal, 0, Vertical);
+        }
     }
     void Boom()
     {
-        for (int a = 0; a < BoomObj.Length; a++)
-        {
-            //if(BoomObj[a].GetComponent<Enemy>().IsGo == true)
-            //{
+        //if (GameManager.Instance.Cutscene == false)
+            for (int a = 0; a < BoomObj.Length; a++)
+            {
+                //if(BoomObj[a].GetComponent<Enemy>().IsGo == true)
                 BoomObj[a].GetComponent<Enemy>().Hp -= GameManager.Instance.Damage * 10;
-            //}
-        }
-        IsBoom = false;
-        GameManager.Instance.Boom -= 1;
+            }
+            IsBoom = false;
+            GameManager.Instance.Boom -= 1;
     }
     void Shild()
     {
@@ -75,7 +77,6 @@ public class Player : MonoBehaviour
         else
         {
             //파티클 종료
-            Debug.Log("실드 파티클 비활성화");
         }
     }
     IEnumerator ShildOff(float ShildTime)
@@ -86,9 +87,13 @@ public class Player : MonoBehaviour
         GameManager.Instance.IsShild = false;
         yield return null;
     }
-    void Fire()
+    private void CutScenePosition()
     {
-        if (Input.GetKey(KeyCode.H) && FireTime == 0)
+        transform.position = new Vector3(0, 10, -10f);
+    }
+    private void Fire()
+    {
+        if (Input.GetKey(KeyCode.H) && FireTime == 0 && GameManager.Instance.Cutscene == false)
         {
             switch (GameManager.Instance.Damage)
             {
@@ -142,7 +147,7 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(GameManager.Instance.IsHit == false && GameManager.Instance.IsShild == false)
+        if(GameManager.Instance.IsHit == false && GameManager.Instance.IsShild == false && GameManager.Instance.Cutscene == false)
         {
             if (other.CompareTag("Enemy") || other.CompareTag("EnemyBullet"))
             {
@@ -151,44 +156,18 @@ public class Player : MonoBehaviour
             }
         }
     }
-    IEnumerator PattonTest()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-
-            //for (int i = 0; i < 360; i += 13) //8방향 발사 (i는 회전값)
-            //{
-            //    GameObject temp = Instantiate(Bullet, transform.position, Quaternion.Euler(0, 0, 0));
-            //    Destroy(temp, 2f);
-            //    temp.transform.rotation = Quaternion.Euler(90, 0, i);
-            //}
-            //for (int i = 0; i < 360; i += 90) //십자가 발사
-            //{
-            //    GameObject temp = Instantiate(Bullet, transform.position, Quaternion.Euler(0, 0, 0));
-            //    Destroy(temp, 2f);
-            //    temp.transform.rotation = Quaternion.Euler(90, 0, i);
-            //}
-            //for (int z = 0; z < 360; z += 20) //십자가 회전 발사
-            //{ //발사 횟수
-            //    for (int i = 0; i < 360; i += 90) //회전값
-            //    {
-            //        GameObject temp = Instantiate(Bullet, transform.position, Quaternion.Euler(90, 0, i + z));
-            //        Destroy(temp, 2f);
-            //    }
-            //    yield return new WaitForSeconds(0.2f);
-            //}
-        }
-        yield return null;
-    }
     IEnumerator PlayerHit()
     {
-        GameManager.Instance.IsHit = true;
-        //GameManager.Instance.DamageShake();
-        GameManager.Instance.Source.GenerateImpulse();
-        mesh.material = materials[1];
-        yield return new WaitForSeconds(3);
-        mesh.material = materials[0];
-        GameManager.Instance.IsHit = false;
-        yield return null;
+        if(GameManager.Instance.Cutscene == false)
+        {
+            GameManager.Instance.IsHit = true;
+            //GameManager.Instance.DamageShake();
+            GameManager.Instance.Source.GenerateImpulse();
+            mesh.material = materials[1];
+            yield return new WaitForSeconds(3);
+            mesh.material = materials[0];
+            GameManager.Instance.IsHit = false;
+            yield return null;
+        }
     }
 }

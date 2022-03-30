@@ -2,40 +2,76 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Playables;
 using Cinemachine;
 
 public class GameManager : MonoBehaviour
-{
-    public static GameManager Instance { get; set; }
-    public float MaxHp, Hp, Damage, MaxBoom, Boom, Score, Stage, Pain, MaxPain, ShildTime;
-    public bool IsHit, IsShild;
+{    public static GameManager Instance { get; set; }
+    public float MaxHp, Hp, Damage, MaxBoom, Boom, Score, Stage, Pain, MaxPain, ShildTime, EnemyDead;
+    public bool IsHit, IsShild, IsBossSpawn, Cutscene;
+    [SerializeField] private float MaxEnemyDead;
     [SerializeField] private Image HpBar, PainBar;
     [SerializeField] private Text Hptext, PainText,ScoreText;
-    [SerializeField] private GameObject[] BoomIcon;
+    [SerializeField] private GameObject[] BoomIcon, Boss, Spawner;
+    [SerializeField] private PlayableDirector[] BossAnimation;
     public CinemachineImpulseSource Source;
 
     // Start is called before the first frame update
     void Start()
     {
-        //HpBar = GetComponent<Image>();
+        if (Stage == 1)
+            MaxEnemyDead = 82;
+        else
+        {
+            MaxEnemyDead = 20;
+        }
+        BossAnimation[0].Stop();
         Source = GetComponent<CinemachineImpulseSource>();
         //DamageShake();
-        Source.GenerateImpulse();
+        //Source.GenerateImpulse();
         Instance = this;
+        EnemyDead = 0;
         Pain = Stage == 1 ? 10 : 30; 
         if(Stage == 1)
         {
             Score = 0;
         }
     }
-
+    
     // Update is called once per frame
     void Update()
     {
         Health();
         Booms();
         ScoreTexts();
+        StartCoroutine(BossSpawn());
         ShildTime -= Time.deltaTime;
+    }
+    IEnumerator BossSpawn()
+    {
+        if(IsBossSpawn == false)
+        {
+            if (Stage == 1 && EnemyDead >= MaxEnemyDead)
+            {
+                Cutscene = true;
+                IsBossSpawn = true;
+                EnemyDead = 0;
+                BossAnimation[0].Play();
+                yield return new WaitForSeconds(12);
+                Cutscene = false;
+                Instantiate(Boss[0], Spawner[0].transform.position, Boss[0].transform.rotation);
+            }
+            else if (Stage == 2 && EnemyDead >= MaxEnemyDead)
+            {
+                Cutscene = true;
+                EnemyDead = 0;
+                IsBossSpawn = true;
+                BossAnimation[1].Play();
+                Cutscene = false;
+                Instantiate(Boss[1], Spawner[0].transform.position, Boss[1].transform.rotation);
+            }
+        }
+        yield return null;
     }
     void Health()
     {

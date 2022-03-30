@@ -115,6 +115,8 @@ MonoBehaviour:
   Speed: 3
   Rotation: 0
   RSpeed: 50
+  player: {fileID: 0}
+  a: 0
 --- !u!65 &4303728474043222648
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -48,7 +48,7 @@ public class EnemySpawner : MonoBehaviour //전체적 흐름 : 텍스트 파일과 위치를 �
             string[] splitText = lineText.Split(','); //,를 기준으로 배열에다가 값을 넣음
 
             var enemyData = new EnemyData();
-            enemyData.SpawnTime = float.Parse(splitText[0]);
+            enemyData.SpawnTime = int.Parse(splitText[0]);
             enemyData.EnemyKind = int.Parse(splitText[1]);
             enemyData.Spawners = int.Parse(splitText[2]);
 
@@ -72,22 +72,24 @@ public class EnemySpawner : MonoBehaviour //전체적 흐름 : 텍스트 파일과 위치를 �
             case 4: Instantiate(Enemy[4], spawnPos, Enemy[4].transform.rotation); break;
             case 5: Instantiate(Enemy[5], spawnPos, Enemy[5].transform.rotation); break;
             case 6: Instantiate(Enemy[6], spawnPos, Enemy[6].transform.rotation); break;
-            case 7: Instantiate(Enemy[7], spawnPos, Enemy[7].transform.rotation); break;
         }
     }
     void Spawn()
     {
-        SpawnCount += Time.deltaTime;
-        if(SpawnCount >= MaxSpawnCount)
+        if(GameManager.Instance.Cutscene == false)
         {
-            MaxSpawnCount = Random.Range(6, 12);
-            SpawnCount = 0;
-            int a = Random.Range(0, 10);
-            int b = Random.Range(0, 5);
-            if(a >= 5)
-            Instantiate(Enemy[7], Spawner[b].transform.position, transform.rotation);
-            else if(a < 5 && a >= 8)
-            Instantiate(Enemy[9], Spawner[b].transform.position, transform.rotation);
-        }
+            SpawnCount += Time.deltaTime;
+            if (SpawnCount >= MaxSpawnCount)
+            {
+                MaxSpawnCount = Random.Range(6, 12);
+                SpawnCount = 0;
+                int a = Random.Range(0, 10);
+                int b = Random.Range(0, 5);
+                if (a >= 5)
+                    Instantiate(Enemy[7], Spawner[b].transform.position, transform.rotation);
+                else if (a < 5 && a >= 8)
+                    Instantiate(Enemy[8], Spawner[b].transform.position, transform.rotation);
+            }
+        } 
     }
 }
