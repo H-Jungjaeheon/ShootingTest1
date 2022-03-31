@@ -23,12 +23,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
-        if (Stage == 1)
-            MaxEnemyDead = 144;
-        else
-        {
-            MaxEnemyDead = 500;
-        }
         BossAnimation[0].Stop();
         StageStartText.text = $"Stage {Stage} Start!";
         Source = GetComponent<CinemachineImpulseSource>();
@@ -46,11 +40,23 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            EnemyDead = 0;
+            SceneManager.LoadScene("Stage2");
+            Stage = 2;
+        }
+        else if (Input.GetKeyDown(KeyCode.W))
+        {
+            Destroy(this.gameObject);
+            SceneManager.LoadScene("Title");
+        }
         Health();
         Booms();
         ScoreTexts();
         StartCoroutine(BossSpawn());
         StartCoroutine(BossDead());
+        Spawner[0] = GameObject.Find("EnemySpawner1");
         ShildTime -= Time.deltaTime;
     }
     IEnumerator BossDead()
@@ -58,6 +64,7 @@ public class GameManager : MonoBehaviour
         if(IsBossDead == true)
         {
             IsBossDead = false;
+            IsBossSpawn = false;
             yield return new WaitForSeconds(4);
             StageEnd.Play();
             yield return null;
@@ -67,6 +74,7 @@ public class GameManager : MonoBehaviour
     {
         if (Stage == 2)
         {
+            EnemyDead = 0;
             SceneManager.LoadScene("Stage2");
         }
         else
@@ -92,10 +100,10 @@ public class GameManager : MonoBehaviour
                 Cutscene = true;
                 EnemyDead = 0;
                 IsBossSpawn = true;
-                BossAnimation[1].Play();
-                yield return new WaitForSeconds(12);
+                //BossAnimation[1].Play();
+                //yield return new WaitForSeconds(12);
                 Cutscene = false;
-                Destroy(AnimBoss[1].gameObject);
+                //Destroy(AnimBoss[1].gameObject);
                 Instantiate(Boss[1], Spawner[0].transform.position, Boss[1].transform.rotation);
             }
         }
@@ -188,6 +196,12 @@ public class GameManager : MonoBehaviour
     }
     void ScoreTexts()
     {
+        if (Stage == 1)
+            MaxEnemyDead = 144;
+        else
+        {
+            MaxEnemyDead = 426;
+        }
         ScoreText.text = $"Score : {Score}";
     }
 }
