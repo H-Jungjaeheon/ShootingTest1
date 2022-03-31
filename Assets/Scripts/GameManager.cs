@@ -24,10 +24,10 @@ public class GameManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         if (Stage == 1)
-            MaxEnemyDead = 143;
+            MaxEnemyDead = 144;
         else
         {
-            MaxEnemyDead = 20;
+            MaxEnemyDead = 500;
         }
         BossAnimation[0].Stop();
         StageStartText.text = $"Stage {Stage} Start!";
@@ -65,9 +65,8 @@ public class GameManager : MonoBehaviour
     }
     void NextStage()
     {
-        if (Stage == 1)
+        if (Stage == 2)
         {
-            Stage++;
             SceneManager.LoadScene("Stage2");
         }
         else

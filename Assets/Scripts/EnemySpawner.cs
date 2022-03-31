@@ -16,7 +16,6 @@ public class EnemySpawner : MonoBehaviour //전체적 흐름 : 텍스트 파일과 위치를 �
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
         dataIdx = 0;
         EnemySpawn(Resources.Load<TextAsset>($"Stage{GameManager.Instance.Stage}Text").text); //리소스파일에 있는 텍스트를 가져옴
     }

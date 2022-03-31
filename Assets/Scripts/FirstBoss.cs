@@ -231,6 +231,7 @@ public class FirstBoss : Enemy
             GameManager.Instance.EnemyDead = 0;
             GameManager.Instance.IsBossDead = true;
             GameManager.Instance.Score += Score;
+            GameManager.Instance.Stage++;
         }
     }
     public override void OnTriggerEnter(Collider other)

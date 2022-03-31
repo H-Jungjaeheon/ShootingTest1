@@ -18,8 +18,16 @@ public class BackGroundScroll : MonoBehaviour
     void ScrollMove()
     {
         float Z = MoveSpeed * Time.deltaTime;
-        BackGround[0].transform.Translate(0, 0, Z);
-        BackGround[1].transform.Translate(0, 0, Z);
+        if(GameManager.Instance.Stage == 1)
+        {
+            BackGround[0].transform.Translate(0, 0, Z);
+            BackGround[1].transform.Translate(0, 0, Z);
+        }
+        else
+        {
+            BackGround[0].transform.Translate(0, 0, Z);
+            BackGround[1].transform.Translate(0, 0, Z);
+        }
         if (BackGround[0].transform.position.z <= BackGround[2].transform.position.z)
         {
             BackGround[0].transform.position = BackGround[3].transform.position;
