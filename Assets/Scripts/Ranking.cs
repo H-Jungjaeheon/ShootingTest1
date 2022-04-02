@@ -10,27 +10,24 @@ public class Ranking : MonoBehaviour
     public string[] Name = new string[5];
     public float[] RankScore = new float[5];
     [SerializeField] float NowScore, IsNew;
+    [SerializeField] private GameObject Obj;
+    //[SerializeField] string NowName;
     public InputField InPuts;
 
     private void Awake()
     {
-        if (IsNew == 0)
-        {
-            for (int a = 0; a < 5; a++)
-            {
-                RankScore[a] = 0;
-                PlayerPrefs.SetFloat($"Score{a + 1}", RankScore[a]);
-            }
-        }
-        for (int a = 0; a < 5; a++)                                                                                          
-        {
-            RankScore[a] = PlayerPrefs.GetFloat($"Score{a + 1}");
-            Name[a] = PlayerPrefs.GetString($"Name{a + 1}");
-        }
-
-        //for (int a = 0; a < 5; a++)
+        //if (IsNew == 0)
         //{
-        //    Name[a] = null;
+        //    for (int a = 0; a < 5; a++)
+        //    {
+        //        RankScore[a] = 0;
+        //        PlayerPrefs.SetFloat($"Score{a + 1}", RankScore[a]);
+        //    }
+        //}
+        //for (int a = 0; a < 5; a++)                                                                                          
+        //{
+        //    RankScore[a] = PlayerPrefs.GetFloat($"Score{a + 1}");
+        //    Name[a] = PlayerPrefs.GetString($"Name{a + 1}");
         //}
     }
 
@@ -39,19 +36,23 @@ public class Ranking : MonoBehaviour
     {
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        IsNew = PlayerPrefs.GetFloat("IsNew");
+        //IsNew = PlayerPrefs.GetFloat("IsNew");
     }
     // Update is called once per frame
     void Update()
     {
         ScenesMove();
-        for(int a = 0; a < 5; a++)
+        //for (int a = 0; a < 5; a++)
+        //{
+        //    PlayerPrefs.SetFloat($"Score{a + 1}", RankScore[a]); 
+        //    PlayerPrefs.SetString($"Name{a + 1}", Name[a]);
+        //    PlayerPrefs.Save();
+        //}
+        //PlayerPrefs.SetFloat("IsNew", IsNew);
+        if (SceneManager.GetActiveScene().name == "Ranking")
         {
-            PlayerPrefs.SetFloat($"Score{a + 1}", RankScore[a]); 
-            PlayerPrefs.SetString($"Name{a + 1}", Name[a]);
-            PlayerPrefs.Save();
+            NowScore = GameManager.Instance.Score;
         }
-        PlayerPrefs.SetFloat("IsNew", IsNew);
 
         //for (int a = 0; a < 5; a++) //ÃÊ±âÈ­
         //{
@@ -71,27 +72,67 @@ public class Ranking : MonoBehaviour
         {
             SceneManager.LoadScene("Ranking");
         }
+        if (SceneManager.GetActiveScene().name == "Ranking")
+        {
+            Obj.SetActive(true);
+        }
+        else
+        {
+            Obj.SetActive(false);
+        }
     }
     public void InputRanking()
     {
-        for(int a = 0; a < 5; a++)
+        if (NowScore > RankScore[0])
+           SuperSort(0);
+        else if(NowScore > RankScore[4] && NowScore < RankScore[3])
+           SuperSort(4);
+        else
         {
-            GameManager.Instance.Score = NowScore;
-            if(NowScore > RankScore[a])
+            for (int a = 1; a < 4; a++)
             {
-                Sort(a);
+                if (NowScore > RankScore[a] && NowScore < RankScore[a - 1])
+                {
+                    Sort(a);
+                }
             }
         }
         IsNew++;
-        Name[0] = InPuts.text;
-        Destroy(InPuts.gameObject);
+        //Destroy(InPuts.gameObject);
+    }
+    void SuperSort(int i)
+    {
+        if(i == 0)
+        {
+            for (int j = 4; j > 0; j--)
+            {
+                RankScore[j] = RankScore[j - 1];
+                Name[j] = Name[j - 1];
+            }
+            Name[i] = InPuts.text;
+            RankScore[i] = NowScore;
+            NowScore = 0;
+            InPuts.text = "";
+        }
+        else
+        {
+            Name[i] = InPuts.text;
+            RankScore[i] = NowScore;
+            NowScore = 0;
+            InPuts.text = "";
+        }
     }
 
     void Sort(int i)
     {
-        for(int j = i+1; j < 5; j++)
+        for(int j = 4; j > i; j--)
         {
-
+            Name[j] = Name[j - 1];
+            RankScore[j] = RankScore[j - 1];
         }
+        Name[i] = InPuts.text;
+        RankScore[i] = NowScore;
+        NowScore = 0;
+        InPuts.text = "";
     }
 }

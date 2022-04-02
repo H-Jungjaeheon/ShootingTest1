@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Image HpBar, PainBar;
     [SerializeField] private Text Hptext, PainText,ScoreText, StageStartText, StageEndText;
     [SerializeField] private GameObject[] BoomIcon, Boss, Spawner, AnimBoss;
+    [SerializeField] private GameObject Objs;
     [SerializeField] private PlayableDirector[] BossAnimation;
     [SerializeField] private PlayableDirector StageStart, StageEnd;
     public CinemachineImpulseSource Source;
@@ -46,11 +47,17 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("Stage2");
             Stage = 2;
         }
-        else if (Input.GetKeyDown(KeyCode.W))
+        //else if (Input.GetKeyDown(KeyCode.W))
+        //{
+        //    Destroy(this.gameObject);
+        //    SceneManager.LoadScene("Title");
+        //}
+        if(SceneManager.GetActiveScene().name == ("Stage1") || SceneManager.GetActiveScene().name == ("Stage2"))
         {
-            Destroy(this.gameObject);
-            SceneManager.LoadScene("Title");
+            Objs.SetActive(true);
         }
+        else
+            Objs.SetActive(false);
         Health();
         Booms();
         ScoreTexts();

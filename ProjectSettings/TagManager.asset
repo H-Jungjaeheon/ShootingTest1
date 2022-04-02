@@ -9,6 +9,7 @@ TagManager:
   - ObjDestroy
   - EnemyBullet
   - RedCell
+  - InputField
   layers:
   - Default
   - TransparentFX
