@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -11,13 +12,16 @@ public class Player : MonoBehaviour
     [SerializeField] private Material[] materials;
     [SerializeField] private MeshRenderer mesh;
     [SerializeField] private bool IsBoom;
+    [SerializeField] private AudioSource audiosource;
+    [SerializeField] private AudioClip[] audioclip;
 
     // Start is called before the first frame update
     void Start()
     {
+        audiosource = GetComponent<AudioSource>();
         DontDestroyOnLoad(gameObject);
         ShildObj.SetActive(false);
-       rigid = GetComponent<Rigidbody>();
+        rigid = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -96,6 +100,8 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.H) && FireTime == 0 && GameManager.Instance.Cutscene == false)
         {
+            audiosource.clip = audioclip[0];
+            audiosource.Play();
             switch (GameManager.Instance.Damage)
             {
                 case 1:

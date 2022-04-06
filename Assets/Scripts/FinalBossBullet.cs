@@ -74,7 +74,7 @@ public class FinalBossBullet : EnemyBullet
         transform.Translate(Z, 0, 0);
         if(CircleLeft == true)
         {
-            transform.RotateAround(Boss2.transform.position, Vector3.down, Speed);
+            transform.RotateAround(Boss2.transform.position, new Vector3(0, -1, 0), Speed);
         }
         else
         {

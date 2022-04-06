@@ -44,15 +44,14 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             EnemyDead = 0;
-            SceneManager.LoadScene("Stage2");
+            SceneManager.LoadScene("Ranking");
             Stage = 2;
         }
-        //else if (Input.GetKeyDown(KeyCode.W))
-        //{
-        //    Destroy(this.gameObject);
-        //    SceneManager.LoadScene("Title");
-        //}
-        if(SceneManager.GetActiveScene().name == ("Stage1") || SceneManager.GetActiveScene().name == ("Stage2"))
+        else if (Input.GetKeyDown(KeyCode.W))
+        {
+            Score += 10;
+        }
+        if (SceneManager.GetActiveScene().name == ("Stage1") || SceneManager.GetActiveScene().name == ("Stage2"))
         {
             Objs.SetActive(true);
         }
